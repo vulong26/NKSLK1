@@ -1,0 +1,72 @@
+﻿@model NKSLK.Models.DTO.CongNhan
+
+@{
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<h2>Create</h2>
+
+<form action="Create" method="post" role="form" enctype="multipart/form-data">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thêm mới </h3>
+
+            <div class="box-tools pull-right">
+
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Họ tên</label>
+                        <input type="text" name="name" class="form-control" id="name">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="dob">Ngày sinh</label>
+                        <input type="text" class="form-control" name="dob" id="dob">
+                    </div>
+                    <div class="form-group">
+                        <label for="Gioitinh">Giới tính</label>
+                        <select id="gt" name="gt">
+                            <option value="true">Nam</option>
+                            <option value="false">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phongban">Phòng ban</label>
+                        <input type="text" name="phongban" class="form-control" id="phongban">
+                    </div>
+                    <div class="form-group">
+                        <label for="chucvu">Chức vụ</label>
+                        <input type="text" name="chucvu" class="form-control" id="chucvu">
+                    </div>
+                    <div class="form-group">
+                        <label for="quequan">Quê Quán</label>
+                        <input type="text" name="quequan" class="form-control" id="quequan">
+                    </div>
+                    <div class="form-group">
+                        <label for="luonghd">Lương hợp đồng</label>
+                        <input type="text" name="luonghd" class="form-control" id="luonghd">
+                    </div>
+                    <div class="form-group">
+                        <label for="luongbh">Lương bảo hiểm</label>
+                        <input type="text" name="luongbh" class="form-control" id="luongbh">
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" value="Thêm" />
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "admin")
+</div>

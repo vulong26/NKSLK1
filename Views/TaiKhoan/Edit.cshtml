@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Sửa tài khoản";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+@using NKSLK.Models.DTO;
+@{ var tk = (TaiKhoan)ViewBag.tk; }
+
+<form action="Edit" method="post" role="form" enctype="multipart/form-data">
+    <input type="hidden" id="id" name="id" value="@tk.MaCN" />
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Chỉnh sửa </h3>
+
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tentk">Tài Khoản</label>
+                        <input type="text" name="tentk" class="form-control" id="tentk" placeholder="Tên tài khoản" value="@tk.TaiKhoan1">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="mk">Mật Khẩu</label>
+                        <input type="text" class="form-control" name="mk" id="mk" placeholder="Mật khẩu" value="@tk.MatKhau">
+                    </div>
+                    <div class="form-group">
+                        <label for="phanquyen">Phân quyền</label>
+                        <input type="text" class="form-control" name="phanquyen" id="phanquyen" placeholder="Phân quyền cho tài khoản" value="@tk.PhanQuyen">
+                    </div>
+                    <div class="form-group">
+                        <label for="macn">Mã công nhân</label>
+                        <input type="text" name="macn" class="form-control" id="macn" value="@tk.MaCN">
+                    </div>
+                    
+                </div>
+                <!-- /.col -->
+
+
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" value="Sửa" />
+    </div>
+</form>
+
