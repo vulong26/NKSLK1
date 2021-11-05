@@ -41,25 +41,28 @@
     <div class="card-body">
         <div class="table-responsive" style="overflow: hidden">
             <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
-                <form class="row" action="List" style="margin-bottom:10px">
-                    <a>Sắp xếp theo lương : Tăng,Giảm</a>
-                    <br />
-                    <div style="padding:0px 0px 0px 12px ; height:40px;width:100px; background-color:blue;">
+                <form class="row" action="/Home/admin" style="margin-bottom:10px; display:block;">
+                    <div style="padding:0px 0px 0px 12px ; height:40px;width:100px; background-color:blue; display:inline-block;">
 
                         <a href="~/Home/Create" style="font-size:18px; color:white; text-decoration:none;">
                             Thêm mới
                         </a>
 
                     </div>
-                    <div>
-                        <input  placeholder="tìm kiếm"/>
+                    <div class="col-sm-12 col-md-3" style="padding:0px; display:inline-block; float:right;">
+                        <label>Tên</label>
+                        <input type="text" class="form-control" name="name" id="name" style="display:inline;width:55%" />
+                        <button class="btn btn-flat btn-success" type="submit">
+                            Tìm kiếm
+                        </button>
                     </div>
+
 
                 </form>
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Mã công nhân</th>
@@ -76,58 +79,59 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaCN)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.HoTen)
-                                    </td>
-                                    <td style="text-align:right">
-                                        @Html.DisplayFor(modelItem => item.NgaySinh)
-                                    </td>
-                                    <td style="text-align:right">
-                                        @{ 
-                                            var gt = "";
-                                            if (item.GioiTinh == true)
-                                            {
-                                                gt = "Nam";
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaCN)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTen)
+                                        </td>
+                                        <td style="text-align:right">
+                                            @Html.DisplayFor(modelItem => item.NgaySinh)
+                                        </td>
+                                        <td style="text-align:right">
+                                            @{
+                                                var gt = "";
+                                                if (item.GioiTinh == true)
+                                                {
+                                                    gt = "Nam";
+                                                }
+
+                                                else
+                                                {
+                                                    gt = "Nữ";
+                                                }
+
                                             }
+                                            @Html.DisplayFor(modelItem => gt)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhongBan)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ChucVu)
 
-                                            else
-                                            {
-                                                gt = "Nữ";
-                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.QueQuan)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LuongHD)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LuongBaoHiem)
+                                        </td>
+                                        <td>
+                                            <a href="~/Home/Edit/@item.MaCN">
+                                                <i class="far fa-edit" style="margin: 0px 10px;"></i>
+                                            </a>
 
-                                        }
-                                        @Html.DisplayFor(modelItem => gt)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PhongBan)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ChucVu)
-
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.QueQuan)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LuongHD)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LuongBaoHiem)
-                                    </td>
-                                    <td>
-                                        <a href="~/Home/Edit/@item.MaCN">
-                                            <i class="far fa-edit" style="margin: 0px 10px;"></i>
-                                        </a>
-
-                                        <a href="~/Home/Delete/@item.MaCN" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
-                                            <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
-                                        </a>
-                                    </td>
-                                </tr>}
+                                            <a href="~/Home/Delete/@item.MaCN" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                                <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
 
                             </tbody>
                         </table>
@@ -136,7 +140,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-5"></div>
-                    <div class="col-sm-12 col-md-7" >
+                    <div class="col-sm-12 col-md-7">
                         <div class="pagination" id="dataTable_paginate" style="text-align:right">
                             @Html.PagedListPager(Model, pageNum => Url.Action("admin", new { pageNum })
 

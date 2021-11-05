@@ -15,10 +15,10 @@ namespace NKSLK.Models.DAO
             db = new Model1();
         }
 
-        public IEnumerable<CongNhan> listCN(int pageNum, int pageSize) //, string maxp,string minp, int idcategory
+        public IEnumerable<CongNhan> listCN(int pageNum, int pageSize,string name) //, string maxp,string minp, int idcategory
         {
 
-            string q = "select * from CongNhan";
+            string q = "select * from CongNhan where HoTen LIKE '%" + name + "%' or QueQuan LIKE '%" + name + "%'";
             var lst = db.Database.SqlQuery<CongNhan>(q).ToPagedList<CongNhan>(pageNum, pageSize);
             return lst;
         }

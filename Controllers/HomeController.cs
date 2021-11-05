@@ -30,10 +30,10 @@ namespace NKSLK.Controllers
             return View();
         }
 
-        public ActionResult admin(int pageNum = 1, int pageSize = 10)
+        public ActionResult admin(int pageNum = 1, int pageSize = 10, string name="")
         {
             CongNhanDAO dao = new CongNhanDAO();
-            return View(dao.listCN(pageNum, pageSize));
+            return View(dao.listCN(pageNum, pageSize,name));
         }
         public ActionResult Delete(int id)
         {
