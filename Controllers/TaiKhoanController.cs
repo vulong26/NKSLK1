@@ -16,7 +16,7 @@ namespace NKSLK.Controllers
             return View();
         }
 
-        public ActionResult phantrang(int pageNum = 1, int pageSize = 10)//123123
+   
         public ActionResult phantrang(int pageNum = 1, int pageSize = 10,string name="")
         {
             TaiKhoanDAO dao = new TaiKhoanDAO();
