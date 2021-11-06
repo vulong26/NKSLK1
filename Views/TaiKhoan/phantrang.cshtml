@@ -42,7 +42,7 @@
     <div class="card-body">
         <div class="table-responsive" style="overflow: hidden">
             <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
-                <form class="row" action="List" style="margin-bottom:10px">
+                <form class="row" action="/TaiKhoan/phantrang" style="margin-bottom:10px">
                     <a>Sắp xếp theo lương : Tăng,Giảm</a>
                     <br />
                     <div style="padding:0px 0px 0px 12px ; height:40px;width:100px; background-color:blue;">
@@ -52,8 +52,12 @@
                         </a>
 
                     </div>
-                    <div>
-                        <input placeholder="tìm kiếm" />
+                    <div class="col-sm-12 col-md-3" style="padding:0px; display:inline-block; float:right;">
+                        <label>Tên</label>
+                        <input type="text" class="form-control" name="name" id="name" style="display:inline;width:55%" />
+                        <button class="btn btn-flat btn-success" type="submit">
+                            Tìm kiếm
+                        </button>
                     </div>
 
                 </form>

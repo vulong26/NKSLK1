@@ -16,10 +16,10 @@ namespace NKSLK.Controllers
             return View();
         }
 
-        public ActionResult phantrang(int pageNum = 1, int pageSize = 10)
+        public ActionResult phantrang(int pageNum = 1, int pageSize = 10,string name="")
         {
             TaiKhoanDAO dao = new TaiKhoanDAO();
-            return View(dao.listTK(pageNum, pageSize));
+            return View(dao.listTK(pageNum, pageSize,name));
         }
         public ActionResult Delete(int id)
         {

@@ -15,10 +15,10 @@ namespace NKSLK.Models.DAO
             db = new Model1();
         }
 
-        public IEnumerable<TaiKhoan> listTK(int pageNum, int pageSize) //, string maxp,string minp, int idcategory
+        public IEnumerable<TaiKhoan> listTK(int pageNum, int pageSize, string name) 
         {
 
-            string q = "select * from TaiKhoan";
+            string q = "select * from TaiKhoan where TaiKhoan1 LIKE '%" + name + "%' or PhanQuyen LIKE '%" + name + "%'";
             var lst = db.Database.SqlQuery<TaiKhoan>(q).ToPagedList<TaiKhoan>(pageNum, pageSize);
             return lst;
         }
