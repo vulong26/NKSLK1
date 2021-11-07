@@ -2468,6 +2468,7 @@
     <Content Include="Assets\plugins\toastr\toastr.js.map" />
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\User\Views\User\Index.cshtml" />
+    <Content Include="Areas\User\Views\User\DangNhap.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
