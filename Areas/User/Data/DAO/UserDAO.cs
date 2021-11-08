@@ -16,7 +16,13 @@ namespace NKSLK.Areas.User.Data.DAO
         public CongNhan getById(int MaCn)
         {
             return db.CongNhans.Single(n => n.MaCN == MaCn);
+            
       
+        }
+        public TaiKhoan getByIdTK(int MaTk)
+        {
+            return db.TaiKhoans.Single(n => n.MaTK == MaTk);
+
         }
         public void Detail(int MaTk)
         {

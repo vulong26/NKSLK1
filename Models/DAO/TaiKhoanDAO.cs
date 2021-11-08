@@ -64,11 +64,13 @@ namespace NKSLK.Models.DAO
 
             }
         }
+
         public void Add(TaiKhoan tk)
         {
             db.TaiKhoans.Add(tk);
             db.SaveChanges();
         }
+        
         //public Category getCategoryname(Products pro)
         //{
         //    return db.Category.Single(i => i.ID == pro.IDCATEGORY);

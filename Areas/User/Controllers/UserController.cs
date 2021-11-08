@@ -14,6 +14,7 @@ namespace NKSLK.Areas.User.Controllers
         Model1 db = new Model1();
         public ActionResult Index()
         {
+            ViewBag.ThongBao = "Đăng xuất để cập nhật mật khẩu";
             return View();
         }
         // GET: User/User
@@ -28,16 +29,23 @@ namespace NKSLK.Areas.User.Controllers
             string sMatKhau = f["txtMatKhau"].ToString();
 
             TaiKhoan tk = db.TaiKhoans.SingleOrDefault(n => n.TaiKhoan1 == sTaikhoan && n.MatKhau == sMatKhau);
-            if (tk != null)
+            if (tk != null && tk.PhanQuyen=="admin")
+            {
+                
+                Session["admin"] = tk;
+                ViewBag.ThongBao = "Đăng nhập thành công!!";
+
+
+                //dao.getById(tk.MaTK).MaCN= 
+
+                 return Redirect("~/Home/admin");
+            }
+            else if (tk != null && tk.PhanQuyen == "user")
             {
                 UserDAO dao = new UserDAO();
                 Session["congnhan"] = tk;
                 ViewBag.MaCongnhan = dao.getById(tk.MaCN);
                 ViewBag.ThongBao = "Đăng nhập thành công!!";
-                
-
-               //dao.getById(tk.MaTK).MaCN= 
-             
                 return RedirectToAction("Index");
             }
             else if (tk==null)
@@ -45,14 +53,14 @@ namespace NKSLK.Areas.User.Controllers
                 ViewBag.ThongBao = "Tài khoản hoặc mật khẩu không đúng!";
                 return View();
             }
-            //ViewBag.ThongBao = "Tài khoản hoặc mật khẩu không đúng!";
             return RedirectToAction("Index");
         }
         public ActionResult DangXuat()
         {
             Session["congnhan"] = null;
-
-            return RedirectToAction("Index");
+          
+            
+             return RedirectToAction("Index");
 
         }
         [HttpPost]
@@ -77,5 +85,15 @@ namespace NKSLK.Areas.User.Controllers
             
 
         }
-}
+        public ActionResult EditTK(int MaTk)
+        {
+            TaiKhoanDAO dao = new TaiKhoanDAO();
+            ViewBag.tk = dao.getById(MaTk);
+            return View();
+
+
+        }
+
+
+    }
 }

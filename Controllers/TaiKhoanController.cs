@@ -69,7 +69,25 @@ namespace NKSLK.Controllers
             tk.PhanQuyen = phanquyen;
             tk.MaCN = macn;
             dao.Edit(tk);
-            return RedirectToAction("phantrang");
+            if (Session["admin"] != null)
+            {
+                return RedirectToAction("phantrang");
+            }
+            else if (Session["congnhan"] != null)
+            {
+                return Redirect("~/User/User/Index");
+                ViewBag.ThongBao = " Mật khẩu sẽ được cập nhật sau ";
+            }
+            return View();
+
+        }
+
+        public ActionResult DangXuat()
+        {
+            
+            Session["admin"] = null;
+
+            return Redirect("~/User/User/DangNhap");
 
         }
     }

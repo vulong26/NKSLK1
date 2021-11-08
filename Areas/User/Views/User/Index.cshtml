@@ -1,15 +1,12 @@
 ﻿@using NKSLK.Areas.User.Data.DAO
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_adminLTE.cshtml";
+    ViewBag.Title = "Trang cá nhân";
+   
 }
 @using NKSLK.Models.DTO;
-@*@{ var cn = (CongNhan)ViewBag.MaCongnhan; }*@
-@using NKSLK.Models.DTO
 
 <h2>Trang người dùng</h2>
 
-@*<a href="~/User/User/DangNhap">Đăng nhập</a>*@
 <div class="DKDN">
     @using (Html.BeginForm("Đăng nhập", "DangNhap", "User"))
     {
@@ -18,12 +15,15 @@
             TaiKhoan tk = (TaiKhoan)Session["congnhan"];
             <div class="TCN">
                 <ul>
-                    <a>  @tk.MaCN</a>
+                    
                     @{ UserDAO dao = new UserDAO();
                         var cn = dao.getById(tk.MaCN); }
-                    <div>@cn.MaCN</div>
-                    <div>@cn.HoTen</div>
-                    <div>@cn.NgaySinh</div>
+                    <div>Xin chào @cn.HoTen </div>
+                    <h2>Thông tin nhân viên</h2>
+                <div class="infor">
+                    <div> Mã công nhân :@cn.MaCN</div>
+                    <div>Họ tên :@cn.HoTen</div>
+                    <div>Ngày sinh: @cn.NgaySinh</div>
                     <div>
                         @{
                             var gt = "";
@@ -38,9 +38,22 @@
                             }
 
                         }
+                        Giới tính:
                         @Html.DisplayFor(modelItem => gt)
                     </div>
-                    <div>@cn.PhongBan</div>                     
+                    <div>Phòng ban:@cn.PhongBan</div>
+                    <div>Chức vụ : @cn.ChucVu</div>
+                </div>
+                <div>
+                    <h2>Thông tin tài khoản</h2>
+                    <div>Tài khoản :@tk.TaiKhoan1</div>
+                    <div>Mật khẩu  :@tk.MatKhau</div>
+                    @ViewBag.ThongBao
+                    <a href="/TaiKhoan/Edit/@tk.MaTK">
+                        Edit<i class="far fa-edit" style="margin: 0px 10px;"></i>
+                    </a>
+                </div>
+                    
                  
                     
                 </ul>
@@ -49,8 +62,6 @@
         }
         else
         {
-            <i class="fal fa-book-user"></i>
-            @Html.ActionLink("Đăng ký", "DangKy", "User", htmlAttributes: new { @class = "DangKy" })
             <i class="fas fa-sign-in-alt"></i>
             @Html.ActionLink("Đăng nhập", "DangNhap", "User", htmlAttributes: new { @class = "DangNhap" })}
 
