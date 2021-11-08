@@ -1,0 +1,19 @@
+﻿@model NKSLK.Models.DTO.TaiKhoan
+@using NKSLK.Models.DTO;
+@{ var tk = (TaiKhoan)ViewBag.cn; }
+
+@{
+    ViewBag.Title = "TrangCaNhan";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<h2>TrangCaNhan</h2>
+
+<div>
+    
+   
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaCN }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

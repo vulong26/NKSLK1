@@ -1,9 +1,58 @@
-﻿
+﻿@using NKSLK.Areas.User.Data.DAO
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_adminLTE.cshtml";
 }
+@using NKSLK.Models.DTO;
+@*@{ var cn = (CongNhan)ViewBag.MaCongnhan; }*@
+@using NKSLK.Models.DTO
 
 <h2>Trang người dùng</h2>
 
-<a href="~/User/User/DangNhap">Đăng nhập</a>
+@*<a href="~/User/User/DangNhap">Đăng nhập</a>*@
+<div class="DKDN">
+    @using (Html.BeginForm("Đăng nhập", "DangNhap", "User"))
+    {
+        if (Session["congnhan"] != null && Session["congnhan"] != "")
+        {
+            TaiKhoan tk = (TaiKhoan)Session["congnhan"];
+            <div class="TCN">
+                <ul>
+                    <a>  @tk.MaCN</a>
+                    @{ UserDAO dao = new UserDAO();
+                        var cn = dao.getById(tk.MaCN); }
+                    <div>@cn.MaCN</div>
+                    <div>@cn.HoTen</div>
+                    <div>@cn.NgaySinh</div>
+                    <div>
+                        @{
+                            var gt = "";
+                            if (cn.GioiTinh == true)
+                            {
+                                gt = "Nam";
+                            }
+
+                            else
+                            {
+                                gt = "Nữ";
+                            }
+
+                        }
+                        @Html.DisplayFor(modelItem => gt)
+                    </div>
+                    <div>@cn.PhongBan</div>                     
+                 
+                    
+                </ul>
+                @Html.ActionLink("Đăng Xuất", "DangXuat", "User")
+            </div>
+        }
+        else
+        {
+            <i class="fal fa-book-user"></i>
+            @Html.ActionLink("Đăng ký", "DangKy", "User", htmlAttributes: new { @class = "DangKy" })
+            <i class="fas fa-sign-in-alt"></i>
+            @Html.ActionLink("Đăng nhập", "DangNhap", "User", htmlAttributes: new { @class = "DangNhap" })}
+
+    }
+</div>

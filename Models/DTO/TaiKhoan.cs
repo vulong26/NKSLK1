@@ -23,7 +23,7 @@ namespace NKSLK.Models.DTO
         [StringLength(100)]
         public string PhanQuyen { get; set; }
 
-        public int? MaCN { get; set; }
+        public int MaCN { get; set; }
 
         public virtual CongNhan CongNhan { get; set; }
     }

@@ -2469,6 +2469,7 @@
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\User\Views\User\Index.cshtml" />
     <Content Include="Areas\User\Views\User\DangNhap.cshtml" />
+    <Content Include="Areas\User\Views\User\TrangCaNhan.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

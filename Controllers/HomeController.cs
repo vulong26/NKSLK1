@@ -46,12 +46,6 @@ namespace NKSLK.Controllers
         {
             return View();
         }
-        public ActionResult Edit(int id)
-        {
-            CongNhanDAO dao = new CongNhanDAO();
-            ViewBag.cn = dao.getById(id);
-            return View();
-        }
 
         [HttpPost]
         public ActionResult Create(string name, string dob, string gt, string phongban, string chucvu, string quequan, string luonghd, string luongbh)
@@ -73,6 +67,12 @@ namespace NKSLK.Controllers
                 return RedirectToAction("admin");
 
 
+        }
+        public ActionResult Edit(int id)
+        {
+            CongNhanDAO dao = new CongNhanDAO();
+            ViewBag.cn = dao.getById(id);
+            return View();
         }
 
         [HttpPost]

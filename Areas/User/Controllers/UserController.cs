@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using NKSLK.Areas.User.Data.DAO;
 
 namespace NKSLK.Areas.User.Controllers
 {
@@ -30,8 +30,14 @@ namespace NKSLK.Areas.User.Controllers
             TaiKhoan tk = db.TaiKhoans.SingleOrDefault(n => n.TaiKhoan1 == sTaikhoan && n.MatKhau == sMatKhau);
             if (tk != null)
             {
-                ViewBag.ThongBao = "Đăng nhập thành công!!";
+                UserDAO dao = new UserDAO();
                 Session["congnhan"] = tk;
+                ViewBag.MaCongnhan = dao.getById(tk.MaCN);
+                ViewBag.ThongBao = "Đăng nhập thành công!!";
+                
+
+               //dao.getById(tk.MaTK).MaCN= 
+             
                 return RedirectToAction("Index");
             }
             else if (tk==null)
@@ -49,25 +55,27 @@ namespace NKSLK.Areas.User.Controllers
             return RedirectToAction("Index");
 
         }
-        //[HttpPost]
-        ////public ActionResult TrangCaNhan(FormCollection f)
-        //{
-        //    TaiKhoan tk = db.TaiKhoans.SingleOrDefault(n=> n.MaCN==MaCn)
-        //    tk..HoTen = f["txtHoTen"].ToString();
-        //    kh.DiaChi = f["txtDiaChi"].ToString();
-        //    kh.DienThoai = f["txtSdt"].ToString();
-        //    //Sach sach = db.Saches.SingleOrDefault(n => n.MaS == MaSach);
-        //    //if (sach == null)
-        //    //{
-        //    //    Response.StatusCode = 404;
-        //    //    return null;
+        [HttpPost]
+        public ActionResult TrangCaNhan(int MaCNs)
+        {
+            
+            TaiKhoan cn = db.TaiKhoans.SingleOrDefault(n => n.MaCN == MaCNs );
+            if (cn == null)
+            {
+                Response.StatusCode = 404;
+                return null;
 
-        //    //}
-        //    //ViewBag.TenChuDe = db.TheLoais.Single(n => n.MaTL == sach.MaTL).TenTL;
-        //    //ViewBag.TenNXB = db.NhaXuatBans.Single(n => n.MaNXB == sach.MaNXB).TenNXB;
-        //    //ViewBag.TenTacGia = db.TacGias.Single(n => n.MaTG == sach.MaTG).TenTG;
-        //    //return View(sach);
-        //    return View();
-        //}
+            }
+
+            return View();
     }
+        public ActionResult Edit(int MaTk)
+        {
+            CongNhanDAO dao = new CongNhanDAO();
+            ViewBag.cn = dao.getById(MaTk);
+            return View();
+            
+
+        }
+}
 }
