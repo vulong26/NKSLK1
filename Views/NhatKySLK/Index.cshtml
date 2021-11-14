@@ -1,0 +1,113 @@
+﻿
+@model PagedList.IPagedList<NKSLK.Models.DTO.NhatKySLK>
+@using PagedList.Mvc
+
+
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Danh sách công nhân</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+                <form class="row" action="/Home/admin" style="margin-bottom:10px; display:block;">
+                    <div style="padding:0px 0px 0px 12px ; height:40px;width:100px; background-color:blue; display:inline-block;">
+
+                        <a href="~/Home/Create" style="font-size:18px; color:white; text-decoration:none;">
+                            Thêm mới
+                        </a>
+
+                    </div>
+                    <div class="col-sm-12 col-md-3" style="padding:0px; display:inline-block; float:right;">
+                        <label>Tên</label>
+                        <input type="text" class="form-control" name="name" id="name" style="display:inline;width:55%" />
+                        <button class="btn btn-flat btn-success" type="submit">
+                            Tìm kiếm
+                        </button>
+                    </div>
+
+
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Ngày thực hiện</th>
+                                    <th>Giờ bắt đầu</th>
+                                    <th>Giờ kết thúc</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgayThucHien)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BatDau)
+                                        </td>
+                                        <td style="text-align:left">
+                                            @Html.DisplayFor(modelItem => item.KetThuc)
+                                        </td>
+
+                                        <td>
+                                            <a href="~/NKKhoan/Edit/@item.MaNhatKy">
+                                                <i class="far fa-edit" style="margin: 0px 10px;"></i>
+                                            </a>
+
+                                            <a href="~/NKKhoan/Delete/@item.MaNhatKy" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                                <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-5"></div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="pagination" id="dataTable_paginate" style="text-align:right">
+                            @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum })
+
+                            )
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

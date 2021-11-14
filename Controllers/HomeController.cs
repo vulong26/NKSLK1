@@ -11,24 +11,6 @@ namespace NKSLK.Controllers
     public class HomeController : Controller
     {
         Model1 db;
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
         public ActionResult admin(int pageNum = 1, int pageSize = 10, string name="")
         {
