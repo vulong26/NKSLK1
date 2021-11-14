@@ -2216,6 +2216,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Dangky.css" />
+    <Content Include="Content\DangNhap.css" />
+    <Content Include="Content\hinh-nen-4k-tuyet-dep-cho-may-tinh.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -2473,6 +2476,7 @@
     <Content Include="Areas\User\Views\User\Index.cshtml" />
     <Content Include="Areas\User\Views\User\DangNhap.cshtml" />
     <Content Include="Areas\User\Views\User\TrangCaNhan.cshtml" />
+    <Content Include="Areas\User\Views\User\DangKy.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -93,6 +93,27 @@ namespace NKSLK.Areas.User.Controllers
 
 
         }
+        public ActionResult DangKy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult DangKy(TaiKhoan kh)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.TaiKhoans.Add(kh);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+                ViewBag.TbDKi("Đăng kí thành công");
+            }
+            
+            return View();
+        }
+
 
 
     }
