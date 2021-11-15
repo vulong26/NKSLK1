@@ -138,15 +138,18 @@
     <Compile Include="Areas\User\Data\DAO\UserDAO.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LuongController.cs" />
     <Compile Include="Controllers\NhatKySLKController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\CongNhanDAO.cs" />
+    <Compile Include="Models\DAO\LuongDAO.cs" />
     <Compile Include="Models\DAO\NKKhoanDAO.cs" />
     <Compile Include="Models\DAO\TaiKhoanDAO.cs" />
     <Compile Include="Models\DTO\CongNhan.cs" />
+    <Compile Include="Models\DTO\CongNhan_Luong.cs" />
     <Compile Include="Models\DTO\CongViec.cs" />
     <Compile Include="Models\DTO\DanhMucCongNhan.cs" />
     <Compile Include="Models\DTO\DanhMucCongViec.cs" />
@@ -2499,6 +2502,8 @@
     <Content Include="Views\NhatKySLK\Index.cshtml" />
     <Content Include="Views\NhatKySLK\NKSLK_All_Month.cshtml" />
     <Content Include="Views\NhatKySLK\NKSLK_All_Week.cshtml" />
+    <Content Include="Views\Luong\Luong_Month.cshtml" />
+    <Content Include="Views\Luong\Luong_Week.cshtml" />
     <None Include="Views\Shared\_adminLTE.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -50,7 +50,7 @@ namespace NKSLK.Controllers
                 else
                 {
                     Session["thang"] = Request["month"];
-                    name = Session["thang"].ToString();
+                    month = Session["thang"].ToString();
                 }
             }
             if(Session["name"]==null)

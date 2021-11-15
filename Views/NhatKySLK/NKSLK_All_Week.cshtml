@@ -39,22 +39,15 @@
             <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
                 <form class="row" action="/NhatKySLK/NKSLK_All_Week" style="margin-bottom:10px; display:block;">
                     <div>
-                        <div style="padding:0px 0px 0px 12px ; height:40px;width:100px; background-color:blue; display:inline-block;">
-
-                            <a href="~/NhatKySLK/Create" style="font-size:18px; color:white; text-decoration:none;">
-                                Thêm mới
-                            </a>
-
-                        </div>
-                        <div class="col-sm-12 col-md-3" style="padding:0px; display:inline-block; float:right;">
+                        <div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 30px; display:inline-block; ">
                             <label for="day">Ngày: </label>
                             <input type="date" id="day" name="day" value="@Session["ngay"]">
-                            <input type="submit" value="Tìm kiếm">
                         </div>
-                        <div class="col-sm-12 col-md-3" style="padding:0px; display:inline-block; float:right;">
+                        <div class="col-sm-12 col-md-3" style="margin: 0px 0px 0px 20px; display: inline-block; ">
                             <label for="month">Tìm kiếm theo tên: </label>
                             <input type="text" id="name" name="name" value="@Session["name"]">
                         </div>
+                        <input type="submit" value="Tìm kiếm" style="height:30px; margin:20px 0px 0px 20px;">
                     </div>
 
                 </form>
