@@ -1,5 +1,4 @@
 ﻿body {
-   
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -9,8 +8,8 @@
     background-position: center;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
-    color:black ;
-    
+    color: white;
+    background-image: url('hinh-nen.jpg6_.jpg');
 }
 /*.DKDN {
     background-color: #c98c8c;
@@ -24,21 +23,21 @@
 .infor {
     color: white;
     margin-left: -50%;
-}
+}*/
 a{
     color:white;
     
-}*/
+}
 .card {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     max-width: 300px;
     margin: auto;
     text-align: center;
     font-family: arial;
-    background-color: bisque;
-    border-radius:20px;
+    background-color: #ed8a8a;
+    border-radius: 20px;
 }
 .title {
-    color: grey;
+    color: white;
     font-size: 18px;
 }

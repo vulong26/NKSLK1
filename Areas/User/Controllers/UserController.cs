@@ -99,31 +99,28 @@ namespace NKSLK.Areas.User.Controllers
         }
         [HttpPost]
 
-        public ActionResult Create(string tentk, string mk, string phanquyen, int macn)
+        public ActionResult Create(string tentk, string mk, string phanquyen, int macn, TaiKhoan tk)
         {
             if (ModelState.IsValid)
             {
-            try
-            {
-            db = new Model1();
-            TaiKhoan tk = new TaiKhoan();
-            tk.MaTK = db.TaiKhoans.Max(i => i.MaTK) + 1;
-            tk.TaiKhoan1 = tentk;
-            tk.MatKhau = mk;
-            tk.PhanQuyen = phanquyen;
-            tk.MaCN = macn;
-            TaiKhoanDAO dao = new TaiKhoanDAO();
-            dao.Add(tk);
-            return View("dkitc");
-            }
+                try
+                {
+                    db = new Model1();
+                    tk= new TaiKhoan();
+                    tk.MaTK = db.TaiKhoans.Max(i => i.MaTK) + 1;
+                    tk.TaiKhoan1 = tentk;
+                    tk.MatKhau = mk;
+                    tk.PhanQuyen = phanquyen;
+                    tk.MaCN = macn;
+                    TaiKhoanDAO dao = new TaiKhoanDAO();
+                    dao.Add(tk);
+                    return View("dkitc");
+                }
             catch
-            {
-                return View("loidki");
+                {
+                    return View("loidki");
+                }
             }
-            }
-
-
-
             return View();
 
         }
