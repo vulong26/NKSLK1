@@ -1,0 +1,44 @@
+﻿body {
+   
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color:black ;
+    
+}
+/*.DKDN {
+    background-color: #c98c8c;
+}
+.AccInfor {
+    color:white;
+    margin-top: -12%;
+    margin-left: 40%;
+    margin-bottom: 3%;
+}
+.infor {
+    color: white;
+    margin-left: -50%;
+}
+a{
+    color:white;
+    
+}*/
+.card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    background-color: bisque;
+    border-radius:20px;
+}
+.title {
+    color: grey;
+    font-size: 18px;
+}

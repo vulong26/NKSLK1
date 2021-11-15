@@ -34,7 +34,19 @@ namespace NKSLK.Areas.User.Data.DAO
             }
         }
 
+        public int Create(int matk, string tentk, string mk, string phanquyen, int macn)
+        {
 
+            TaiKhoan tk = new TaiKhoan();
+            tk.MaTK = db.TaiKhoans.Max(i => i.MaTK) + 1;
+            tk.TaiKhoan1 = tentk;
+            tk.MatKhau = mk;
+            tk.PhanQuyen = phanquyen;
+            tk.MaCN = macn;
+            db.TaiKhoans.Add(tk);
+            db.SaveChanges();
+            return tk.MaTK;
+        }
         //public void listCT(int MaTK)
         //{
         //    string q = "select * from CongNhan where CongNhan.MaCN=TaiKhoan.MaCN and TaiKhoan.MaTK==''+'";

@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("TaiKhoan")]
     public partial class TaiKhoan
@@ -12,9 +13,11 @@
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaTK { get; set; }
-
+        
         [Column("TaiKhoan1")]
         [Display(Name = "Tên tài khoản")]
+        [Required(ErrorMessage = "{0} không thể để trống")]
+        
         [StringLength(100)]
         public string TaiKhoan1 { get; set; }
 
