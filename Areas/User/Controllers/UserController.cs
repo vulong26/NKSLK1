@@ -93,25 +93,39 @@ namespace NKSLK.Areas.User.Controllers
 
 
         }
-        public ActionResult DangKy()
+        public ActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
 
-        public ActionResult DangKy(TaiKhoan kh)
+        public ActionResult Create(string tentk, string mk, string phanquyen, int macn)
         {
             if (ModelState.IsValid)
             {
-
-                db.TaiKhoans.Add(kh);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-                ViewBag.TbDKi("Đăng kí thành công");
+            try
+            {
+            db = new Model1();
+            TaiKhoan tk = new TaiKhoan();
+            tk.MaTK = db.TaiKhoans.Max(i => i.MaTK) + 1;
+            tk.TaiKhoan1 = tentk;
+            tk.MatKhau = mk;
+            tk.PhanQuyen = phanquyen;
+            tk.MaCN = macn;
+            TaiKhoanDAO dao = new TaiKhoanDAO();
+            dao.Add(tk);
+            return View("dkitc");
             }
-            
+            catch
+            {
+                return View("loidki");
+            }
+            }
+
+
+
             return View();
+
         }
 
 

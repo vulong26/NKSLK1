@@ -1,6 +1,5 @@
 ﻿
 body {
-    
     background-image: url('hinh-nen-4k-tuyet-dep-cho-may-tinh.jpg');
     background-size: cover;
     -webkit-background-size: cover;
@@ -13,11 +12,13 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: white;
 }
+
 h4 {
     font-family: -WEBKIT-PICTOGRAPH;
     font-size: 28px;
     color: #72f60b;
 }
+
 a {
     padding-left: 30px;
     text-decoration: none;
@@ -25,28 +26,12 @@ a {
     padding-right: 30px;
 }
 
-a:hover {
-    color:white;
-}
-input#HoTen  {
-    text-align:center;
-    margin-top:15px;
-    outline: none;
-    font-size: .9em;
-    padding: 1em 3em 1em 1em;
-    border: none;
-    margin-bottom: 0.3em;
-    background: rgba(255, 255, 255, 0.85);
-    width:40%;
-    color: #000;
-    border-radius: 30px;
-    font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 1px;
-}
-input#TaiKhoan1 {
+    a:hover {
+        color: white;
+    }
+
+input#tentk {
     text-align: center;
-    
     outline: none;
     font-size: .9em;
     padding: 1em 3em 1em 1em;
@@ -59,8 +44,10 @@ input#TaiKhoan1 {
     font-weight: 400;
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 1px;
+    margin-left: 2%;
 }
-input#MatKhau {
+
+input#mk {
     text-align: center;
     margin-bottom: 15px;
     outline: none;
@@ -75,75 +62,50 @@ input#MatKhau {
     font-weight: 400;
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 1px;
-}
-input#PhanQuyen {
-    text-align: center;
-  
-    outline: none;
-    font-size: .9em;
-    padding: 1em 3em 1em 1em;
-    border: none;
-    margin-bottom: 0.3em;
-    background: rgba(255, 255, 255, 0.85);
-    width: 40%;
-    color: #000;
-    border-radius: 30px;
-    font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 1px;
-}
-input#MaCN {
-    text-align: center;
-   
-    outline: none;
-    font-size: .9em;
-    padding: 1em 3em 1em 1em;
-    border: none;
-    margin-bottom: 0.3em;
-    background: rgba(255, 255, 255, 0.85);
-    width: 40%;
-    color: #000;
-    border-radius: 30px;
-    font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 1px;
-}
-input#DienThoai {
-    text-align: center;
-    margin-top: 15px;
-    outline: none;
-    font-size: .9em;
-    padding: 1em 3em 1em 1em;
-    border: none;
-    margin-bottom: 0.3em;
-    background: rgba(255, 255, 255, 0.85);
-    width: 40%;
-    color: #000;
-    border-radius: 30px;
-    font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 1px;
-}
-input#GioiTinh {
-    text-align: center;
-    margin-top: 15px;
-    outline: none;
-    font-size: .9em;
-    padding: 1em 3em 1em 1em;
-    border: none;
-    margin-bottom: 0.3em;
-    background: rgba(255, 255, 255, 0.85);
-    width: 40%;
-    color: #000;
-    border-radius: 30px;
-    font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 1px;
+    margin-left: 2%;
 }
 
+input#PhanQuyen {
+    text-align: center;
+    outline: none;
+    font-size: .9em;
+    padding: 1em 3em 1em 1em;
+    border: none;
+    margin-bottom: 0.3em;
+    background: rgba(255, 255, 255, 0.85);
+    width: 40%;
+    color: #000;
+    border-radius: 30px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    margin-left: 1%;
+}
+
+input#MaCN {
+    text-align: center;
+    outline: none;
+    font-size: .9em;
+    padding: 1em 3em 1em 1em;
+    border: none;
+    margin-bottom: 0.3em;
+    background: rgba(255, 255, 255, 0.85);
+    width: 40%;
+    color: #000;
+    border-radius: 30px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    margin-left: 0%;
+}
+
+
+
+
+
 input.btn.btn-default {
-   margin-top:2%;
-   margin-bottom:1%;
+    margin-top: 2%;
+    margin-bottom: 1%;
     color: white;
     background: #ea2858;
     border: none;
@@ -161,13 +123,32 @@ input.btn.btn-default {
     -moz-transition: 0.5s all;
     -ms-transition: 0.5s all;
     border-radius: 30px;
+  
 }
+
 label.control-label.col-md-2 {
     font-size: 20px;
     font-weight: 500;
     font-family: -WEBKIT-PICTOGRAPH;
     color: #ffffff;
 }
+
 span.field-validation-error.text-danger {
     display: block;
+}
+
+input.btn.btn-primary {
+    text-align: center;
+    outline: none;
+    font-size: .9em;
+    padding: 1em 1em 1em 1em;
+    border: none;
+    margin-bottom: -34.7 em;
+    background: rgba(255, 255, 255, 0.85);
+    width: 20%;
+    color: #000;
+    border-radius: 24 px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
 }

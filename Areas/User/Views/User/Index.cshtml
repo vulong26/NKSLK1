@@ -4,66 +4,78 @@
    
 }
 @using NKSLK.Models.DTO;
+<head>
+    <link href="~/Content/Index.css" rel="stylesheet" />
+</head>
 
-<h2>Trang người dùng</h2>
-
-<div class="DKDN">
-    @using (Html.BeginForm("Đăng nhập", "DangNhap", "User"))
-    {
-        if (Session["congnhan"] != null && Session["congnhan"] != "")
+<body>
+    <h2>Trang người dùng</h2>
+    <div class="DKDN">
+        @using (Html.BeginForm("Đăng nhập", "DangNhap", "User"))
         {
-            TaiKhoan tk = (TaiKhoan)Session["congnhan"];
-            <div class="TCN">
-                <ul>
-                    
-                    @{ UserDAO dao = new UserDAO();
-                        var cn = dao.getById(tk.MaCN); }
-                    <div>Xin chào @cn.HoTen </div>
-                    <h2>Thông tin nhân viên</h2>
-                <div class="infor">
-                    <div> Mã công nhân :@cn.MaCN</div>
-                    <div>Họ tên :@cn.HoTen</div>
-                    <div>Ngày sinh: @cn.NgaySinh</div>
-                    <div>
-                        @{
-                            var gt = "";
-                            if (cn.GioiTinh == true)
-                            {
-                                gt = "Nam";
-                            }
+            if (Session["congnhan"] != null && Session["congnhan"] != "")
+            {
+                TaiKhoan tk = (TaiKhoan)Session["congnhan"];
+                <div class="card1">
+                    <ul>
 
-                            else
-                            {
-                                gt = "Nữ";
-                            }
+                        @{ UserDAO dao = new UserDAO();
+                            var cn = dao.getById(tk.MaCN); }
+                        <div>Xin chào @cn.HoTen </div>
 
-                        }
-                        Giới tính:
-                        @Html.DisplayFor(modelItem => gt)
-                    </div>
-                    <div>Phòng ban:@cn.PhongBan</div>
-                    <div>Chức vụ : @cn.ChucVu</div>
+                        <div class="card">
+                            <h2>Thông tin nhân viên</h2>
+                            <div> Mã công nhân :@cn.MaCN</div>
+                            <div class="title">Họ tên :@cn.HoTen</div>
+                            <div>Ngày sinh: @cn.NgaySinh</div>
+                            <div>
+                                @{
+                                    var gt = "";
+                                    if (cn.GioiTinh == true)
+                                    {
+                                        gt = "Nam";
+                                    }
+
+                                    else
+                                    {
+                                        gt = "Nữ";
+                                    }
+
+                                }
+                                Giới tính:
+                                @Html.DisplayFor(modelItem => gt)
+                            </div>
+                            <div>Phòng ban:@cn.PhongBan</div>
+                            <div>Chức vụ : @cn.ChucVu</div>
+                        </div>
+                        <div class="card">
+                            <h2>Thông tin tài khoản</h2>
+                            <div>
+                                <label>
+                                    Tài khoản :
+                                </label>@tk.TaiKhoan1
+                            </div>
+                            <div><label>Mật khẩu  :</label>@tk.MatKhau</div>
+
+                            <a href="/TaiKhoan/Edit/@tk.MaTK">
+                                Edit<i class="far fa-edit" style="margin: 0px 10px;"></i>
+                            </a>
+                        </div>
+
+
+
+                    </ul>
+                    @Html.ActionLink("Đăng Xuất", "DangXuat", "User")
+
                 </div>
-                <div>
-                    <h2>Thông tin tài khoản</h2>
-                    <div>Tài khoản :@tk.TaiKhoan1</div>
-                    <div>Mật khẩu  :@tk.MatKhau</div>
-                    @ViewBag.ThongBao
-                    <a href="/TaiKhoan/Edit/@tk.MaTK">
-                        Edit<i class="far fa-edit" style="margin: 0px 10px;"></i>
-                    </a>
-                </div>
-                    
-                 
-                    
-                </ul>
-                @Html.ActionLink("Đăng Xuất", "DangXuat", "User")
-            </div>
+            }
+            else
+            {
+                <i class="fas fa-sign-in-alt"></i>
+                @Html.ActionLink("Đăng nhập", "DangNhap", "User", htmlAttributes: new { @class = "DangNhap" })}
+
+
         }
-        else
-        {
-            <i class="fas fa-sign-in-alt"></i>
-            @Html.ActionLink("Đăng nhập", "DangNhap", "User", htmlAttributes: new { @class = "DangNhap" })}
-
-    }
-</div>
+        @Html.ActionLink("Đăng ký", "Create", "User", htmlAttributes: new { @class = "Create" })
+    </div>
+</body>

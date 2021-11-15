@@ -1,0 +1,60 @@
+﻿@model NKSLK.Models.DTO.TaiKhoan
+
+@{
+    
+}
+<head>
+    <link href="~/Content/DangKy.css" rel="stylesheet" />
+</head>
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+<body>
+    <form action="Create" method="post" role="form" enctype="multipart/form-data">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Đăng kí tài khoản </h3>
+
+                <div class="box-tools pull-right">
+
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for="tentk">Tài khoản</label>
+                            <input type="text" class="form-control" name="tentk" id="tentk" placeholder="Tên tài khoản">
+                            @Html.ValidationMessageFor(model=>model.TaiKhoan1)
+                        </div>
+                        <div class="form-group">
+                            <label for="mk">Mật khẩu </label>
+                            <input type="text" class="form-control" name="mk" id="mk" placeholder="Mật khẩu">
+                            @Html.ValidationMessageFor(model => model.MatKhau)
+                        </div>
+                        <div class="form-group">
+                            <label for="phongban">Phân quyền</label>
+                            <input type="text" name="phanquyen" class="form-control" id="phanquyen" value="user" readonly >
+                            @Html.ValidationMessageFor(model => model.PhanQuyen)
+                        </div>
+                        <div class="form-group">
+                            <label for="macn">Mã công nhân</label>
+                            <input type="text" name="macn" class="form-control" id="macn" placeholder="Mã công nhân">
+                            @Html.ValidationMessageFor(model => model.MaCN)
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+
+        </div>
+        <div class="box-footer">
+            <input type="submit" class="btn btn-primary" value="Đăng kí" />
+        </div>
+    </form>
+</body>
+
+
+
