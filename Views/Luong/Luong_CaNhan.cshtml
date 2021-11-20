@@ -43,9 +43,18 @@
                 <form class="row" action="/Luong/Luong_Month" style="margin-bottom:10px; display:block;">
                     <div style="display:inline-flex;">
                         <div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display:inline-block; float:right;">
-                            <input type="radio" id="sort" name="fav_language" value="HTML" onclick="SortMax()" style="margin-top: 10px; margin-left: 10px;">
+
+                            @{ string checkMax = "";    string checkMin = "";
+                                if (ViewBag.Sort == "Max")
+                                { checkMax = "checked"; }
+
+                                if(ViewBag.Sort == "Min")
+                                { checkMin = "checked"; }
+                                }
+                            <input type="radio" id="sortMax" name="fav_language" value="HTML" onclick="SortMax()" style="margin-top: 10px; margin-left: 10px;" @checkMax >
                             <label for="html">Max</label><br>
-                            <input type="radio" id="sort" name="fav_language" value="HTML" onclick="SortMin()" style="margin-top: 10px; margin-left: 10px;">
+
+                            <input type="radio" id="sortMin" name="fav_language" value="HTML" onclick="SortMin()" style="margin-top: 10px; margin-left: 10px;" @checkMin>
                             <label for="html">Min</label><br>
                         </div>
                         @*<div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display: inline-block; float: right;">

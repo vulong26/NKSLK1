@@ -16,23 +16,23 @@ namespace NKSLK.Controllers
             string month = Request["month"];
             if (Session["thang"] == null)
             {
-                if (month == null)
+                if (month == null)          //load đầu tiên
                 {
                     month = dt.Year.ToString() + "-" + dt.Month.ToString();
                 }
-                else
+                else                        // chọn tháng lần đầu
                 {
                     Session["thang"] = Request["month"];
                     month = Session["thang"].ToString();
                 }
             }
-            else
+            else                            
             {
-                if (month == null)
+                if (month == null)                      // phân trang + đã chọn tháng
                 {
                     month = Session["thang"].ToString();
                 }
-                else
+                else                                    // đã chọn tháng + chọn tháng mới
                 {
                     Session["thang"] = Request["month"];
                     month = Session["thang"].ToString();
@@ -85,11 +85,13 @@ namespace NKSLK.Controllers
         //----------------------------------------------------------
         public ActionResult SortMax_LuongCaNhan(int pageNum = 1, int pageSize = 10)
         {
+            ViewBag.Sort = "Max";
             LuongDAO dao = new LuongDAO();
             return View("Luong_CaNhan", dao.listSortMax_LuongCaNhan(pageNum, pageSize));
         }
         public ActionResult SortMin_LuongCaNhan(int pageNum = 1, int pageSize = 10)
         {
+            ViewBag.Sort = "Min";
             LuongDAO dao = new LuongDAO();
             return View("Luong_CaNhan", dao.listSortMin_LuongCaNhan(pageNum, pageSize));
         }
