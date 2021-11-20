@@ -77,7 +77,10 @@ namespace NKSLK.Controllers
 
         public ActionResult Luong_CaNhan(int pageNum = 1, int pageSize = 10)
         {
+            Session["max"] = null;
+            Session["min"] = null;
             LuongDAO dao = new LuongDAO();
+            
             return View(dao.listLuong_CaNhan(pageNum, pageSize));
         }
 
@@ -85,11 +88,17 @@ namespace NKSLK.Controllers
         //----------------------------------------------------------
         public ActionResult SortMax_LuongCaNhan(int pageNum = 1, int pageSize = 10)
         {
+            
+            Session["max"] = 1 ;
+            Session["min"] = null;
             LuongDAO dao = new LuongDAO();
+
             return View("Luong_CaNhan", dao.listSortMax_LuongCaNhan(pageNum, pageSize));
         }
         public ActionResult SortMin_LuongCaNhan(int pageNum = 1, int pageSize = 10)
         {
+            Session["min"] = 2;
+            Session["max"] = null;
             LuongDAO dao = new LuongDAO();
             return View("Luong_CaNhan", dao.listSortMin_LuongCaNhan(pageNum, pageSize));
         }

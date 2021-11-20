@@ -43,11 +43,15 @@
                 <form class="row" action="/Luong/Luong_Month" style="margin-bottom:10px; display:block;">
                     <div style="display:inline-flex;">
                         <div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display:inline-block; float:right;">
-                            <input type="radio" id="sort" name="fav_language" value="HTML" onclick="SortMax()" style="margin-top: 10px; margin-left: 10px;">
-                            <label for="html">Max</label><br>
-                            <input type="radio" id="sort" name="fav_language" value="HTML" onclick="SortMin()" style="margin-top: 10px; margin-left: 10px;">
-                            <label for="html">Min</label><br>
+
                         </div>
+                        <input type="radio" id="sortMax" name="fav_language" value="@Session["max"]" onclick="SortMax()" style="margin-top: 10px; margin-left: 10px;">
+                        <label for="html">Max</label><br>
+                        <input type="radio" id="sortMin" name="fav_language" value="@Session["min"]" onclick="SortMin()" style="margin-top: 10px; margin-left: 10px;">
+                        <label for="html">Min</label><br>
+                        <input type="radio" id="reset" name="fav_language" value="" onclick="Reset()" style="margin-top: 10px; margin-left: 10px;">
+                        <label for="html">Reset</label><br>
+                    </div>
                         @*<div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display: inline-block; float: right;">
                                 <label for="month">Tìm kiếm theo tên: </label>
                                 <input type="text" id="name" name="name" value="@Session["name"]">
@@ -103,7 +107,20 @@
                     <div class="col-sm-12 col-md-7">
                         <div class="pagination" id="dataTable_paginate" style="text-align:center">
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                            @Html.PagedListPager(Model, pageNum => Url.Action("Luong_CaNhan", new { pageNum }))
+                            @if (Session["max"] == null & Session["min"] == null )
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("Luong_CaNhan", new { pageNum }))
+                            }
+                            else if (Session["min"] != null )
+                            {
+
+                                @Html.PagedListPager(Model, pageNum => Url.Action("SortMin_LuongCaNhan", new { pageNum }))
+                            }
+                            else if (Session["max"] != null)
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("SortMax_LuongCaNhan", new { pageNum }))
+                            }
+
 
                         </div>
                     </div>
@@ -119,5 +136,8 @@
     }
     function SortMin() {
         location.href = "@Url.Action("SortMin_LuongCaNhan", "Luong")";
+    }
+     function Reset() {
+        location.href = "@Url.Action("Luong_CaNhan", "Luong")";
     }
 </script>
