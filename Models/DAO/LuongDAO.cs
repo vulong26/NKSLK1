@@ -31,12 +31,36 @@ namespace NKSLK.Models.DAO
             var lst = db.Database.SqlQuery<CongNhan_Luong>(q).ToPagedList(pageNum, pageSize);
             return lst;
         }
-        public IEnumerable<CongNhan_Luong> LuongCaNhan(int pageNum, int pageSize, string month)
+
+        public IEnumerable<CongNhan_Luong> listLuong_CaNhan(int pageNum, int pageSize)
         {
-            string q = "Select * from luongcongnhan";
+            string q = "SELECT * FROM dbo.v_LuongCongNhan";
             var lst = db.Database.SqlQuery<CongNhan_Luong>(q).ToPagedList(pageNum, pageSize);
             return lst;
         }
-
+        public IEnumerable<CongNhan_Luong> listSortMax_LuongCaNhan(int pageNum, int pageSize)
+        {
+            string q = "SELECT * FROM dbo.v_LuongCongNhan ORDER BY Luong DESC";
+            var lst = db.Database.SqlQuery<CongNhan_Luong>(q).ToPagedList(pageNum, pageSize);
+            return lst;
+        }
+        public IEnumerable<CongNhan_Luong> listSortMin_LuongCaNhan(int pageNum, int pageSize)
+        {
+            string q = "SELECT * FROM dbo.v_LuongCongNhan ORDER BY Luong ASC";
+            var lst = db.Database.SqlQuery<CongNhan_Luong>(q).ToPagedList(pageNum, pageSize);
+            return lst;
+        }
+        public IEnumerable<CongNhan_Luong> listMax_LuongCaNhan(int pageNum, int pageSize)
+        {
+            string q = "SELECT MAX([Luong]) AS 'Max' FROM dbo.v_LuongCongNhan";
+            var lst = db.Database.SqlQuery<CongNhan_Luong>(q).ToPagedList(pageNum, pageSize);
+            return lst;
+        }
+        public IEnumerable<CongNhan_Luong> listMin_LuongCaNhan(int pageNum, int pageSize)
+        {
+            string q = "SELECT * FROM dbo.v_LuongCongNhan";
+            var lst = db.Database.SqlQuery<CongNhan_Luong>(q).ToPagedList(pageNum, pageSize);
+            return lst;
+        }
     }
 }

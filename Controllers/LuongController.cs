@@ -74,5 +74,41 @@ namespace NKSLK.Controllers
             
             return View(dao.listLuong_Week(pageNum, pageSize, day));
         }
+
+        public ActionResult Luong_CaNhan(int pageNum = 1, int pageSize = 10)
+        {
+            LuongDAO dao = new LuongDAO();
+            return View(dao.listLuong_CaNhan(pageNum, pageSize));
+        }
+
+        // ------------------SAP XEP----------------------------------
+        //----------------------------------------------------------
+        public ActionResult SortMax_LuongCaNhan(int pageNum = 1, int pageSize = 10)
+        {
+            LuongDAO dao = new LuongDAO();
+            return View("Luong_CaNhan", dao.listSortMax_LuongCaNhan(pageNum, pageSize));
+        }
+        public ActionResult SortMin_LuongCaNhan(int pageNum = 1, int pageSize = 10)
+        {
+            LuongDAO dao = new LuongDAO();
+            return View("Luong_CaNhan", dao.listSortMin_LuongCaNhan(pageNum, pageSize));
+        }
+
+        //------------------------------------------------------------------
+        //------------------------------------------------------------------
+
+
+        public ActionResult Max_LuongCaNhan(int pageNum = 1, int pageSize = 10)
+        {
+            LuongDAO dao = new LuongDAO();
+
+            return View(dao.listMax_LuongCaNhan(pageNum, pageSize));
+        }
+        public ActionResult Min_LuongCaNhan(int pageNum = 1, int pageSize = 10)
+        {
+            LuongDAO dao = new LuongDAO();
+
+            return View(dao.listMin_LuongCaNhan(pageNum, pageSize));
+        }
     }
 }
