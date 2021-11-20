@@ -16,23 +16,23 @@ namespace NKSLK.Controllers
             string month = Request["month"];
             if (Session["thang"] == null)
             {
-                if (month == null)
+                if (month == null)          //load đầu tiên
                 {
                     month = dt.Year.ToString() + "-" + dt.Month.ToString();
                 }
-                else
+                else                        // chọn tháng lần đầu
                 {
                     Session["thang"] = Request["month"];
                     month = Session["thang"].ToString();
                 }
             }
-            else
+            else                            
             {
-                if (month == null)
+                if (month == null)                      // phân trang + đã chọn tháng
                 {
                     month = Session["thang"].ToString();
                 }
-                else
+                else                                    // đã chọn tháng + chọn tháng mới
                 {
                     Session["thang"] = Request["month"];
                     month = Session["thang"].ToString();
