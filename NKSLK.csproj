@@ -2512,6 +2512,9 @@
     <Content Include="Views\Luong\Luong_Week.cshtml" />
     <Content Include="Views\CongViec\Index.cshtml" />
     <Content Include="Views\Luong\Luong_CaNhan.cshtml" />
+    <Content Include="Views\CongViec\Create.cshtml" />
+    <Content Include="Views\CongViec\XemChiTiet.cshtml" />
+    <Content Include="Views\CongViec\Edit.cshtml" />
     <None Include="Views\Shared\_adminLTE.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

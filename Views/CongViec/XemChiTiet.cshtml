@@ -1,0 +1,136 @@
+﻿@model PagedList.IPagedList<NKSLK.Models.DTO.NhatKySLK>
+
+@using PagedList.Mvc
+
+@using NKSLK.Models.DAO
+
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+@using NKSLK.Models.DTO;
+@{ var cv = (CongViec)ViewBag.cv; }
+
+<h2>XemChiTiet</h2>
+
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Danh sách khoán</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+                <form class="row" action="/CongViec/Index" style="margin-bottom:10px; display:block;">
+                    <div class="row">
+
+                    </div>
+
+                    <div>
+                        @{ CongViecDAO dao = new CongViecDAO();}
+
+                        <p style="margin-left: 300px;font-size:30px;font-weight: bold;font-style: italic;">Tên công việc: @cv.TenCV</p>
+
+                        @{ int count = dao.SoNKSLK(cv.MaCV);}
+                        <p style="margin-left: 300px;font-size:30px;font-weight: bold;font-style: italic;">Số lượng khoán: @count</p>
+                        @{ string AVG = "";}
+                        @{ if (ViewBag.DonGiaTB != null && ViewBag.DonGiaTB == 1)
+                            {
+                                AVG = Math.Round(dao.AVG(), 2).ToString();
+                            }}
+                        <h3>@AVG</h3>
+                    </div>
+
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Ngày thực hiện</th>
+                                    <th>Giờ bắt đầu</th>
+                                    <th>Giờ kết thúc</th>
+                                    <th>Ca</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgayThucHien)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BatDau)
+                                        </td>
+                                        <td @*style="text-align:right"*@>
+                                            @Html.DisplayFor(modelItem => item.KetThuc)
+                                        </td>
+                                        <td>
+                                            @{ int Ca = 1;}
+                                            @{ if (item.BatDau == new System.TimeSpan(0, 14, 0, 0) && item.KetThuc == new System.TimeSpan(0, 22, 0, 0))
+                                                {
+                                                    Ca = 2;
+                                                }
+                                                else if (item.BatDau == new System.TimeSpan(0, 22, 0, 0) && item.KetThuc == new System.TimeSpan(0, 6, 0, 0))
+                                                {
+                                                    Ca = 3;
+                                                }
+                                            }
+                                            <p>@Ca</p>
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-5"></div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="pagination" id="dataTable_paginate" style="text-align:right">
+                            @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum })
+
+                            )
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "index")
+</div>
+

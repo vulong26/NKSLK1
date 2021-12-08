@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+@using NKSLK.Models.DTO;
+@{ var cv = (CongViec)ViewBag.cv; }
+
+<form action="Edit" method="post" role="form" enctype="multipart/form-data">
+    <input type="hidden" id="id" name="id" value="@cv.MaCV" />
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Chỉnh sửa </h3>
+
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Tên công việc</label>
+                        <input type="text" name="TenCV" class="form-control" id="TenCV" placeholder="Tên công nhân" value="@cv.TenCV">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="DMK">Định mức khoán</label>
+                        <input type="text" class="form-control" name="DMK" id="DMK" placeholder="Ngày sinh" value="@cv.DinhMucKhoan">
+                    </div>
+                    <div class="form-group">
+                        <label for="DVK">Đơn vị khoán</label>
+                        <input type="text" name="DVK" class="form-control" id="DVK" value="@cv.DonViKhoan">
+                    </div>
+                    <div class="form-group">
+                        <label for="HSK">Hệ số khoán</label>
+                        <input type="text" name="HSK" class="form-control" id="HSK" value="@cv.HeSoKhoan">
+                    </div>
+                    <div class="form-group">
+                        <label for="DMLD">Định mức lao động</label>
+                        <input type="text" name="DMLD" class="form-control" id="DMLD" value="@cv.DinhMucLD">
+                    </div>
+                </div>
+                <!-- /.col -->
+
+
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" value="Sửa" />
+    </div>
+</form>
+<div>
+    @Html.ActionLink("Back to List", "index")
+</div>
+

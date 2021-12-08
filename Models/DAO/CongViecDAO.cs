@@ -23,7 +23,6 @@ namespace NKSLK.Models.DAO
         //}
         public IEnumerable<CongViec> listCV(int pageNum, int pageSize, string name) //, string maxp,string minp, int idcategory
         {
-
             string q = "select * from CongViec where TenCV LIKE '%" + name + "%'";
             var lst = db.Database.SqlQuery<CongViec>(q).ToPagedList<CongViec>(pageNum, pageSize);
             return lst;

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<h2>Create</h2>
+
+<form action="Create" method="post" role="form" enctype="multipart/form-data">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thêm mới </h3>
+
+            <div class="box-tools pull-right">
+
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Tên công việc</label>
+                        <input type="text" name="TenCV" class="form-control" id="TenCV">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="DMK">Định mức khoán</label>
+                        <input type="text" class="form-control" name="DMK" id="DMK">
+                    </div>
+                    <div class="form-group">
+                        <label for="DVK">Đơn vị khoán</label>
+                        <input type="text" name="DVK" class="form-control" id="DVK">
+                    </div>
+                    <div class="form-group">
+                        <label for="HSK">Hệ số khoán</label>
+                        <input type="text" name="HSK" class="form-control" id="HSK">
+                    </div>
+                    <div class="form-group">
+                        <label for="DMLD">Định mức lao động</label>
+                        <input type="text" name="DMLD" class="form-control" id="DMLD">
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" value="Thêm" />
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "index")
+</div>
+
