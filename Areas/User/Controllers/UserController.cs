@@ -60,7 +60,7 @@ namespace NKSLK.Areas.User.Controllers
             Session["congnhan"] = null;
           
             
-             return RedirectToAction("Index");
+             return RedirectToAction("DangNhap");
 
         }
         [HttpPost]

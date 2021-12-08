@@ -7,16 +7,18 @@
         display: inline;
     }
 
+
         .pagination a {
             color: black;
             float: left;
             padding: 8px 16px;
             text-decoration: none;
             display: inline-block;
+            border: 1px solid #ddd;
         }
 
             .pagination a.active {
-                background-color: #4CAF50;
+                background-color: darkolivegreen;
                 color: white;
                 border-radius: 5px;
             }
@@ -25,6 +27,15 @@
                 background-color: #ddd;
                 border-radius: 5px;
             }
+
+    th {
+        text-align: center;
+        background-color: #5a77c8;
+    }
+    .timkiem {
+        margin-left: 50px;
+        margin-top: 15px;
+    }
 </style>
 
 <!-- Page Heading -->
@@ -39,14 +50,17 @@
                 <form class="row" action="/Luong/Luong_Week" style="margin-bottom:10px; display:block;">
                     <div style="display:inline-flex;">
                         <div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display:inline-block; float:right;">
-                            <label for="day">Ngày : </label>
+                            <label for="day">Tìm theo tuần : </label>
                             <input type="date" id="day" name="day" value="@Session["ngay"]">
                         </div>
                         @*<div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display: inline-block; float: right;">
                                 <label for="month">Tìm kiếm theo tên: </label>
                                 <input type="text" id="name" name="name" value="@Session["name"]">
                             </div>*@
-                        <input type="submit" value="Tìm kiếm" style="height:30px; margin:20px 0px 0px 90px;">
+                        <div class="timkiem">
+                            <input type="submit" value="Tìm kiếm" style="height:30px; margin:20px 0px 0px 90px;">
+                        </div>
+                        
                     </div>
 
                 </form>

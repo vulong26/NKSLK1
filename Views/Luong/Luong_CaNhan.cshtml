@@ -17,18 +17,26 @@
             padding: 8px 16px;
             text-decoration: none;
             display: inline-block;
+            border: 1px solid #ddd;
         }
 
             .pagination a.active {
-                background-color: #4CAF50;
+                background-color: darkolivegreen;
                 color: white;
                 border-radius: 5px;
             }
 
-            .pagination a:hover:not(.active) {
-                background-color: #ddd;
-                border-radius: 5px;
-            }
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+        border-radius: 5px;
+    }
+    th{
+        text-align:center;
+        background-color:#5a77c8;
+    }
+    .col-sm-12.col-md-3 {
+        font-weight: 900;
+    }
 </style>
 
 <!-- Page Heading -->
@@ -43,13 +51,13 @@
                 <form class="row" action="/Luong/Luong_Month" style="margin-bottom:10px; display:block;">
                     <div style="display:inline-flex;">
                         <div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display:inline-block; float:right;">
-
+                            Sort 
                         </div>
-                        <input type="radio" id="sortMax" name="fav_language" value="@Session["max"]" onclick="SortMax()" style="margin-top: 10px; margin-left: 10px;">
+                        <input type="radio" id="sortMax" name="fav_language" value="@Session["max"]"  onclick="SortMax()" style="margin-top: 10px; margin-left: 10px;">
                         <label for="html">Max</label><br>
-                        <input type="radio" id="sortMin" name="fav_language" value="@Session["min"]" onclick="SortMin()" style="margin-top: 10px; margin-left: 10px;">
+                        <input type="radio" id="sortMin" name="fav_language" value="@Session["min"]"  onclick="SortMin()" style="margin-top: 10px; margin-left: 10px;">
                         <label for="html">Min</label><br>
-                        <input type="radio" id="reset" name="fav_language" value="" onclick="Reset()" style="margin-top: 10px; margin-left: 10px;">
+                        <input type="radio" id="reset" name="fav_language" value="" onclick="Reset()"  style="margin-top: 10px; margin-left: 10px;">
                         <label for="html">Reset</label><br>
                     </div>
                         @*<div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display: inline-block; float: right;">
