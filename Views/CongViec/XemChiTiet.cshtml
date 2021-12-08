@@ -41,9 +41,34 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Danh sách khoán</h1>
 
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
+    <i class="fa fa-arrow-left fa-2x" aria-hidden="true" style="margin: 20px;">
+        @if (Session["CongViec_Index"].ToString() == "index")
+        {
+            @Html.ActionLink("Back to List", "index")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_NhieuSLKNhat")
+        {
+            @Html.ActionLink("Back to List", "CV_NhieuSLKNhat")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoNhat")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaCaoNhat")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaThapNhat")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaThapNhat")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoHon")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaCaoHon")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaNhoHon")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaNhoHon")
+        }
+    </i>
     <div class="card-body">
         <div class="table-responsive" style="overflow: hidden">
             <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
@@ -83,14 +108,14 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
+                                    <tr >
+                                        <td style="width: 300px;">
                                             @Html.DisplayFor(modelItem => item.NgayThucHien)
                                         </td>
-                                        <td>
+                                        <td style="width: 150px;">
                                             @Html.DisplayFor(modelItem => item.BatDau)
                                         </td>
-                                        <td @*style="text-align:right"*@>
+                                        <td style="width: 150px;">
                                             @Html.DisplayFor(modelItem => item.KetThuc)
                                         </td>
                                         <td>
@@ -119,9 +144,8 @@
                     <div class="col-sm-12 col-md-5"></div>
                     <div class="col-sm-12 col-md-7">
                         <div class="pagination" id="dataTable_paginate" style="text-align:right">
-                            @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum })
-
-                            )
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            @Html.PagedListPager(Model, pageNum => Url.Action("XemChiTiet", new { pageNum }))
                         </div>
                     </div>
                 </div>
@@ -131,6 +155,6 @@
 </div>
 
 <div>
-    @Html.ActionLink("Back to List", "index")
+    
 </div>
 

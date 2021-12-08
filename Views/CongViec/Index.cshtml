@@ -59,18 +59,38 @@
                     </div>
                     <div class="row">
                         <div class="col span-1-of-2" style="margin-top:10px">
-                            <input type="radio" id="html" name="fav_language" value="HTML" onclick="NhieuSLKNhat()" style="margin-top: 10px; margin-left: 10px;">
+                            @{string Checked = " "; }
+                            @if (Session["CongViec_Index"].ToString() == "CV_NhieuSLKNhat") { Checked = "checked"; }
+                            <input type="radio" id="html" name="fav_language" value="HTML" onclick="NhieuSLKNhat()" style="margin-top: 10px; margin-left: 10px;" @Checked>
                             <label for="html">Công viện nhiều sản lượng khoán nhất</label><br>
-                            <input type="radio" id="css" name="fav_language" value="CSS" onclick="DonGiaCaoNhat()" style="margin-top: 10px; margin-left: 10px;">
+                            @{ Checked = "";}
+
+                            @if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoNhat") { Checked = "checked"; }
+                            <input type="radio" id="css" name="fav_language" value="CSS" onclick="DonGiaCaoNhat()" style="margin-top: 10px; margin-left: 10px; @Checked">
                             <label for="css">Công việc có đơn giá cao nhất</label><br>
-                            <input type="radio" id="javascript" name="fav_language" value="JavaScript" onclick="DonGiaThapNhat()" style="margin-top: 10px; margin-left: 10px;">
+                            @{ Checked = "";}
+
+                            @if (Session["CongViec_Index"].ToString() == "CV_DonGiaThapNhat") { Checked = "checked"; }
+                            <input type="radio" id="javascript" name="fav_language" value="JavaScript" onclick="DonGiaThapNhat()" style="margin-top: 10px; margin-left: 10px;" @Checked>
                             <label for="javascript">Công việc có đơn giá thấp nhất</label><br>
+                            @{ Checked = "";}
+
                         </div>
                         <div class="col span-2-of-2" style="margin-top:10px">
-                            <input type="radio" id="html4" name="fav_language" value="HTML" onclick="DonGiaCaoHon()" style="margin-top: 10px; margin-left: 10px;">
+                            @if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoHon") { Checked = "checked"; }
+                            <input type="radio" id="html4" name="fav_language" value="HTML" onclick="DonGiaCaoHon()" style="margin-top: 10px; margin-left: 10px;" @Checked>
                             <label for="html4">Công việc có đơn giá cao hơn đơn giá trung bình</label><br>
-                            <input type="radio" id="css4" name="fav_language" value="CSS" onclick="DonGiaNhoHon()" style="margin-top: 10px; margin-left: 10px;">
+                            @{ Checked = "";}
+
+                            @if (Session["CongViec_Index"].ToString() == "CV_DonGiaNhoHon") { Checked = "checked"; }
+                            <input type="radio" id="css4" name="fav_language" value="CSS" onclick="DonGiaNhoHon()" style="margin-top: 10px; margin-left: 10px;" @Checked>
                             <label for="css4">Công việc có đơn giá thấp hơn đơn giá trung bình</label><br>
+                            @{ Checked = "";}
+
+                            @if (Session["CongViec_Index"].ToString() == "index") { Checked = "checked"; }
+                            <input type="radio" id="css5" name="fav_language" value="CSS" onclick="TatCa()" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="css5">Tất cả</label><br>
+                            @{ Checked = "";}
                         </div>
                     </div>
 
@@ -153,9 +173,31 @@
                     <div class="col-sm-12 col-md-5"></div>
                     <div class="col-sm-12 col-md-7">
                         <div class="pagination" id="dataTable_paginate" style="text-align:right">
-                            @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum })
-
-                            )
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            @if (Session["CongViec_Index"].ToString() == "index")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum }))
+                            }
+                            else if (Session["CongViec_Index"].ToString() == "CV_NhieuSLKNhat")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("CV_NhieuSLKNhat", new { pageNum }))
+                            }
+                            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoNhat")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("CV_DonGiaCaoNhat", new { pageNum }))
+                            }
+                            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaThapNhat")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("CV_DonGiaThapNhat", new { pageNum }))
+                            }
+                            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoHon")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("CV_DonGiaCaoHon", new { pageNum }))
+                            }
+                            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaNhoHon")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("CV_DonGiaNhoHon", new { pageNum }))
+                            }
                         </div>
                     </div>
                 </div>
@@ -179,6 +221,9 @@
     }
     function DonGiaNhoHon() {
         location.href = "@Url.Action("CV_DonGiaNhoHon", "CongViec")";
+    }
+    function TatCa() {
+        location.href = "@Url.Action("index", "CongViec")";
     }
 </script>
 
