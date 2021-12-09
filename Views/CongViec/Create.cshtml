@@ -53,6 +53,31 @@
 </form>
 
 <div>
-    @Html.ActionLink("Back to List", "index")
+    <i class="fa fa-arrow-left fa-fg" aria-hidden="true" style="margin: 20px;">
+        @if (Session["CongViec_Index"].ToString() == "index")
+        {
+            @Html.ActionLink("Back to List", "index")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_NhieuSLKNhat")
+        {
+            @Html.ActionLink("Back to List", "CV_NhieuSLKNhat")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoNhat")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaCaoNhat")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaThapNhat")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaThapNhat")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoHon")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaCaoHon")
+        }
+        else if (Session["CongViec_Index"].ToString() == "CV_DonGiaNhoHon")
+        {
+            @Html.ActionLink("Back to List", "CV_DonGiaNhoHon")
+        }
+    </i>
 </div>
 

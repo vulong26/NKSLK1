@@ -14,6 +14,7 @@ namespace NKSLK.Controllers
         // GET: CongViec
         public ActionResult Index(int pageNum = 1, int pageSize = 10, string name = "")
         {
+            Session["CongViec_Index"] = "index";
             CongViecDAO dao = new CongViecDAO();
             //ViewBag.SoNKSLK = dao.SoNKSLK();
             return View(dao.listCV(pageNum, pageSize, name));
@@ -25,27 +26,32 @@ namespace NKSLK.Controllers
         }
         public ActionResult CV_NhieuSLKNhat(int pageNum = 1, int pageSize = 10)
         {
+            Session["CongViec_Index"] = "CV_NhieuSLKNhat";
             CongViecDAO dao = new CongViecDAO();
             return View("Index", dao.list_CV_NhieuSLKNhat(pageNum, pageSize));
         }
         public ActionResult CV_DonGiaCaoNhat(int pageNum = 1, int pageSize = 10)
         {
+            Session["CongViec_Index"] = "CV_DonGiaCaoNhat";
             CongViecDAO dao = new CongViecDAO();
             return View("Index", dao.list_CV_DonGiaCaoNhat(pageNum, pageSize));
         }
         public ActionResult CV_DonGiaThapNhat(int pageNum = 1, int pageSize = 10)
         {
+            Session["CongViec_Index"] = "CV_DonGiaThapNhat";
             CongViecDAO dao = new CongViecDAO();
             return View("Index", dao.list_CV_DonGiaThapNhat(pageNum, pageSize));
         }
         public ActionResult CV_DonGiaCaoHon(int pageNum = 1, int pageSize = 10)
         {
+            Session["CongViec_Index"] = "CV_DonGiaCaoHon";
             CongViecDAO dao = new CongViecDAO();
             ViewBag.DonGiaTB = 1;
             return View("Index", dao.list_CV_DonGiaCaoHon(pageNum, pageSize));
         }
         public ActionResult CV_DonGiaNhoHon(int pageNum = 1, int pageSize = 10)
         {
+            Session["CongViec_Index"] = "CV_DonGiaNhoHon";
             CongViecDAO dao = new CongViecDAO();
             ViewBag.DonGiaTB = 1;
             return View("Index", dao.list_CV_DonGiaNhoHon(pageNum, pageSize));
@@ -53,6 +59,7 @@ namespace NKSLK.Controllers
 
         public ActionResult XemChiTiet(int id, int pageNum = 1, int pageSize = 10)
         {
+            //Session["CongViec_Index"] = "XemChiTiet";
             CongViecDAO dao = new CongViecDAO();
             ViewBag.cv = dao.getById(id);
             return View(dao.list_CV_NhatKy(id, pageNum, pageSize));
@@ -73,6 +80,26 @@ namespace NKSLK.Controllers
             CongViecDAO dao = new CongViecDAO();
             dao.Add(cv);
 
+            if(Session["CongViec_Index"].ToString() == "CV_NhieuSLKNhat")
+            {
+                return RedirectToAction("CV_NhieuSLKNhat");
+            }
+            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoNhat")
+            {
+                return RedirectToAction("CV_DonGiaCaoNhat");
+            }
+            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaThapNhat")
+            {
+                return RedirectToAction("CV_DonGiaThapNhat");
+            }
+            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaCaoHon")
+            {
+                return RedirectToAction("CV_DonGiaCaoHon");
+            }
+            else if (Session["CongViec_Index"].ToString() == "CV_DonGiaNhoHon")
+            {
+                return RedirectToAction("CV_DonGiaNhoHon");
+            }
             return RedirectToAction("index");
         }
         public ActionResult Edit(int id)
