@@ -1,0 +1,58 @@
+﻿@model NKSLK.Models.DTO.SanPham
+
+@{
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<h2>Create</h2>
+
+<form action="Create" method="post" role="form" enctype="multipart/form-data">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thêm mới </h3>
+
+            <div class="box-tools pull-right">
+
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tensp">Tên sản phẩm</label>
+                        <input type="text" name="tensp" class="form-control" id="tensp">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="sodk">Số đăng ký</label>
+                        <input type="text" name="sodk" class="form-control" id="sodk">
+                    </div>
+                    <div class="form-group">
+                        <label for="hsd">Hạn sử dụng</label>
+                        <input type="datetime" name="hsd" class="form-control" id="hsd">
+                    </div>
+                    <div class="form-group">
+                        <label for="quycach">Quy cách</label>
+                        <input type="text" name="quycach" class="form-control" id="quycach">
+                    </div>
+                    <div class="form-group">
+                        <label for="ngaydk">Ngày đăng ký</label>
+                        <input type="text" name="ngaydk" class="form-control" id="ngaydk">
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" value="Thêm" />
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "phantrang")
+</div>

@@ -141,6 +141,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuongController.cs" />
     <Compile Include="Controllers\NhatKySLKController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -149,6 +150,7 @@
     <Compile Include="Models\DAO\CongViecDAO.cs" />
     <Compile Include="Models\DAO\LuongDAO.cs" />
     <Compile Include="Models\DAO\NKKhoanDAO.cs" />
+    <Compile Include="Models\DAO\SanPhamDAO.cs" />
     <Compile Include="Models\DAO\TaiKhoanDAO.cs" />
     <Compile Include="Models\DTO\CongNhan.cs" />
     <Compile Include="Models\DTO\CongNhan_Luong.cs" />
@@ -2515,6 +2517,9 @@
     <Content Include="Views\CongViec\Create.cshtml" />
     <Content Include="Views\CongViec\XemChiTiet.cshtml" />
     <Content Include="Views\CongViec\Edit.cshtml" />
+    <Content Include="Views\SanPham\phantrang.cshtml" />
+    <Content Include="Views\SanPham\Create.cshtml" />
+    <Content Include="Views\SanPham\Edit.cshtml" />
     <None Include="Views\Shared\_adminLTE.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
