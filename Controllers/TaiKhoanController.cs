@@ -6,8 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace NKSLK.Controllers
 {
+    //[Authorize(Roles = "admin")]
     public class TaiKhoanController : Controller
     {
         Model1 db;

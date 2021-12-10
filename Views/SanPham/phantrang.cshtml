@@ -1,0 +1,149 @@
+﻿@model PagedList.IPagedList<NKSLK.Models.DTO.SanPham>
+
+
+@using PagedList.Mvc
+
+@using NKSLK.Models.DAO
+@{ ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Danh sách sản phẩm</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+                <form class="row" action="/SanPham/phantrang" style="margin-bottom:10px">
+
+                    <br />
+                    <div style="border-style: outset; padding: 0px 0px 0px 12px; height: 40px; width: 100px; background-color: blue;">
+
+                        <a href="~/SanPham/Create" style=" font-size: 18px; color: white; text-decoration: none;">
+                            Thêm mới
+                        </a>
+
+                    </div>
+                    <div class="col-sm-12 col-md-3" style="padding:0px; display:inline-block; float:right;">
+
+                        <input type="text" class="form-control" name="name" id="name" style="display:inline;width:55%" />
+                        <button class="btn btn-flat btn-success" type="submit">
+                            Tìm kiếm
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-2" style="margin-top:10px">
+                            <input type="radio" id="hsd" name="fav_language" value="HTML" onclick="SP_HSD()" style="margin-top: 10px; margin-left: 10px;">
+                            <label for="html">Sản phẩm có hạn sủ dụng trên 1 năm (tính từ ngày đăng ký)</label><br>
+                            <input type="radio" id="ndk" name="fav_language" value="CSS" onclick="SP_NDK()" style="margin-top: 10px; margin-left: 10px;">
+                            <label for="css">Sản phẩm có ngày đăng kí trước: </label><br> <input type="text" class="form-control" name="name" id="name" style="display:inline;width:55%" />
+                        </div>
+                    </div>
+
+
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số đăng ký</th>
+                                    <th>Hạn sử dụng</th>
+                                    <th>Quy cách</th>
+                                    <th>Ngày đăng ký</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaSP)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SoDangKy)
+                                        </td>
+                                        <td style="text-align:right">
+                                            @Html.DisplayFor(modelItem => item.HanSD)
+                                        </td>
+                                        <td style="text-align:right">
+                                            @Html.DisplayFor(modelItem => item.QuyCach)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgayDangKy)
+                                        </td>
+
+                                        <td>
+                                            <a href="~/SanPham/Edit/@item.MaSP">
+                                                <i class="far fa-edit" style="margin: 0px 10px;"></i>
+                                            </a>
+
+                                            <a href="~/SanPham/Delete/@item.MaSP" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                                <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-5"></div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="pagination" id="dataTable_paginate" style="text-align:right">
+                            @Html.PagedListPager(Model, pageNum => Url.Action("phantrang", new { pageNum })
+
+                            )
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function SP_HSD() {
+        location.href = "@Url.Action("SP_HSD", "SanPham")";
+    }
+    function SP_NDK() {
+        location.href = "@Url.Action("SP_NDK", "SanPham")";
+    }
+</script>

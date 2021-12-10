@@ -40,6 +40,23 @@
             color: white;
             font-size: 18px;
         }
+        td, tr {
+            text-align: center;
+        }
+        th {
+            background-color: cornflowerblue;
+            text-align: center;
+        }
+        .DKDN{
+            margin-left:33%;
+        }
+        label{
+            margin-left:43%
+        }
+        .link{
+            margin-left:62%;
+            margin-top:-4.5%;
+        }
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,7 +85,7 @@
 </head>
 
 <body>
-    <h2>Trang chủ</h2>
+    
     <div class="DKDN">
         @using (Html.BeginForm("Đăng nhập", "DangNhap", "User"))
         {
@@ -79,8 +96,9 @@
                     <ul>
 
                         @{ UserDAO dao = new UserDAO();
-                            var cn = dao.getById(tk.MaCN); }
-                        <div>Xin chào @cn.HoTen </div>
+                            var cn = dao.getById(tk.MaCN);
+                        }
+                        <label>Xin chào @cn.HoTen </label>
 
                         <div class="row">
                             <div class="col-sm-12">
@@ -170,7 +188,7 @@
 
 
                     </ul>
-                    @Html.ActionLink("Đăng Xuất", "DangXuat", "User")
+                    <div style="margin-left:30%">@Html.ActionLink("Đăng Xuất", "DangXuat", "User")</div>
 
                 </div>
             }
@@ -181,6 +199,7 @@
 
 
         }
+    <div class="link" >
         @Html.ActionLink("Đăng ký", "Create", "User", htmlAttributes: new { @class = "Create" })
-    </div>
+    </div></div>
 </body>
