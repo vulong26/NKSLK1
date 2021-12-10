@@ -1,0 +1,149 @@
+﻿@model PagedList.IPagedList<NKSLK.Models.DTO.NKSLK_ChiTietCongNhan>
+
+@using PagedList.Mvc
+
+@using NKSLK.Models.DAO
+
+@{
+    ViewBag.Title = "ChiTietCongNhan_NKSLK";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<h2>Chi tiết công nhân thực hiện khoán</h2>
+
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Danh sách khoán</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <i class="fa fa-arrow-left fa-2x" aria-hidden="true" style="margin: 20px;">
+        @if (Session["NhatKySLK_Index"].ToString() == "index")
+        {
+            @Html.ActionLink("Back to List", "index")
+        }
+        else if (Session["NhatKySLK_Index"].ToString() == "1")
+        {
+            @Html.ActionLink("Back to List", "Ca1_NKSLK")
+        }
+        else if (Session["NhatKySLK_Index"].ToString() == "2")
+        {
+            @Html.ActionLink("Back to List", "Ca2_NKSLK")
+        }
+        else if (Session["NhatKySLK_Index"].ToString() == "3")
+        {
+            @Html.ActionLink("Back to List", "Ca3_NKSLK")
+        }
+
+    </i>
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+                <form class="row" action="/CongViec/Index" style="margin-bottom:10px; display:block;">
+                    <div class="row">
+
+                    </div>
+
+                        <div>
+                            <p style="margin-left: 300px;font-size:30px;font-weight: bold;font-style: italic;">Ngày thực hiện khoán: @ViewBag.NgayThucHien</p>
+
+                            @{ string ca = "";}
+                            @if ((int)ViewBag.Ca == 1)
+                            {
+                                ca = "Ca 1 (6:00 - 14:00)";
+                            }
+                            else if ((int)ViewBag.Ca == 2)
+                            {
+                                ca = "Ca 2 (14:00 - 22:00)";
+                            }
+                            else
+                            {
+                                ca = "Ca 3 (22:00 - 6:00)";
+                            }
+                            <p style="margin-left: 450px;font-size:30px;font-weight: bold;font-style: italic;">@ca</p>
+
+                        </div>
+
+</form>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 70px;">Mã CN</th>
+                                    <th style="width: 300px;">Họ tên</th>
+                                    <th style="width: 70px;">Tổ</th>
+                                    <th style="width: 150px;">Bắt đầu làm</th>
+                                    <th style="width: 150px;">Kết thúc làm</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaCN)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaToNhanCong)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BatDauLam)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KetThucLam)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TrangThai)
+                                    </td>
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-5"></div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="pagination" id="dataTable_paginate" style="text-align:right">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            @Html.PagedListPager(Model, pageNum => Url.Action("XemChiTiet", new { pageNum }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

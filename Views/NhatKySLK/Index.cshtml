@@ -52,10 +52,34 @@
                             Tìm kiếm
                         </button>
                     </div>
-
-
                 </form>
-
+                <div class="row">
+                    @{string Checked = " "; }
+                    <div class="col span-1-of-4" style="margin-top:10px">
+                        @if (Session["NhatKySLK_Index"].ToString() == "1") { Checked = "checked"; }
+                        <input type="radio" id="html" name="fav_language" value="HTML" onclick="Ca1()" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                        <label for="html">Ca 1</label><br>
+                        @{ Checked = "";}
+                    </div>
+                    <div class="col span-2-of-4" style="margin-top:10px">
+                        @if (Session["NhatKySLK_Index"].ToString() == "2") { Checked = "checked"; }
+                        <input type="radio" id="css" name="fav_language" value="CSS" onclick="Ca2()" style="margin-top: 10px; margin-left: 10px; @Checked">
+                        <label for="css">Ca 2</label><br>
+                        @{ Checked = "";}
+                    </div>
+                    <div class="col span-3-of-4" style="margin-top:10px">
+                        @if (Session["NhatKySLK_Index"].ToString() == "3") { Checked = "checked"; }
+                        <input type="radio" id="javascript" name="fav_language" value="JavaScript" onclick="Ca3()" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                        <label for="javascript">Ca 3</label><br>
+                        @{ Checked = "";}
+                    </div>
+                    <div class="col span-4-of-4" style="margin-top:10px">
+                        @if (Session["NhatKySLK_Index"].ToString() == "index") { Checked = "checked"; }
+                        <input type="radio" id="javascript" name="fav_language" value="JavaScript" onclick="TatCa()" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                        <label for="javascript">Tất cả</label><br>
+                        @{ Checked = "";}
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
@@ -81,6 +105,10 @@
                                         </td>
 
                                         <td>
+                                            <a href="~/NhatKySLK/ChiTietCongNhan_NKSLK/@item.MaNhatKy">
+                                                <i class="fa fa-info-circle fa-lg" aria-hidden="true" style="margin-left: 20px; color: cadetblue"></i>
+                                            </a>
+
                                             <a href="~/NKKhoan/Edit/@item.MaNhatKy">
                                                 <i class="far fa-edit" style="margin: 0px 10px;"></i>
                                             </a>
@@ -103,7 +131,7 @@
                         <div class="pagination" id="dataTable_paginate" style="text-align:right">
                             @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum })
 
-                            )
+)
                         </div>
                     </div>
                 </div>
@@ -111,3 +139,17 @@
         </div>
     </div>
 </div>
+<script>
+    function Ca1() {
+        location.href = "@Url.Action("Ca1_NKSLK", "NhatKySLK")";
+    }
+    function Ca2() {
+        location.href = "@Url.Action("Ca2_NKSLK", "NhatKySLK")";
+    }
+    function Ca3() {
+        location.href = "@Url.Action("Ca3_NKSLK", "NhatKySLK")";
+    }
+    function TatCa() {
+        location.href = "@Url.Action("Index", "NhatKySLK")";
+    }
+</script>

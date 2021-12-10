@@ -158,6 +158,7 @@
     <Compile Include="Models\DTO\Model1.cs" />
     <Compile Include="Models\DTO\NhatKySLK.cs" />
     <Compile Include="Models\DTO\NKK_CongNhan.cs" />
+    <Compile Include="Models\DTO\NKSLK_ChiTietCongNhan.cs" />
     <Compile Include="Models\DTO\SanPham.cs" />
     <Compile Include="Models\DTO\sysdiagram.cs" />
     <Compile Include="Models\DTO\TaiKhoan.cs" />
@@ -2515,6 +2516,7 @@
     <Content Include="Views\CongViec\Create.cshtml" />
     <Content Include="Views\CongViec\XemChiTiet.cshtml" />
     <Content Include="Views\CongViec\Edit.cshtml" />
+    <Content Include="Views\NhatKySLK\ChiTietCongNhan_NKSLK.cshtml" />
     <None Include="Views\Shared\_adminLTE.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

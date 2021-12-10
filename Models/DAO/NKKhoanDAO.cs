@@ -105,5 +105,50 @@ namespace NKSLK.Models.DAO
         //{
         //    return db.Category.Single(i => i.ID == pro.IDCATEGORY);
         //}
+
+        //------------------------------------------------HUY----------------------------------------------------
+        public IEnumerable<NhatKySLK> list_NKSLK_Ca(string ca, int pageNum, int pageSize)
+        {
+            string BatDau = "";
+            if (ca == "1")
+            {
+                BatDau = "6:00";
+            }
+            else if (ca == "2")
+            {
+                BatDau = "14:00";
+            }
+            else if (ca == "3")
+            {
+                BatDau = "22:00";
+            }
+
+            string q = "SELECT * FROM dbo.NhatKySLK";
+            if (BatDau != "")
+            {
+                q = "SELECT * FROM dbo.NhatKySLK WHERE BatDau = '" + BatDau + "'";
+            }
+
+            var lst = db.Database.SqlQuery<NhatKySLK>(q).ToPagedList<NhatKySLK>(pageNum, pageSize);
+            return lst;
+        }
+        public DateTime NgayThucHienKhoan(int MaNhatKy)
+        {
+            string q = "SELECT NgayThucHien FROM dbo.NhatKySLK WHERE MaNhatKy = '" + MaNhatKy + "'";
+            DateTime d = db.Database.SqlQuery<DateTime>(q).FirstOrDefault();
+            return d;
+        }
+        public int NKSLK_Ca(int MaNhatKy)
+        {
+            string q = "SELECT IIF(BatDau = '6:00', 1, IIF(BatDau = '14:00', 2, 3)) FROM dbo.NhatKySLK WHERE MaNhatKy = '" + MaNhatKy + "'";
+            int ca = db.Database.SqlQuery<int>(q).FirstOrDefault();
+            return ca;
+        }
+        public IEnumerable<NKSLK_ChiTietCongNhan> list_NKSLK_chiTietCN(int MaNhatKy, int pageNum, int pageSize)
+        {
+            string q = "EXEC dbo.ChiTietNhatKy_CN @MaNhatKy = " + MaNhatKy;
+            var lst = db.Database.SqlQuery<NKSLK_ChiTietCongNhan>(q).ToPagedList<NKSLK_ChiTietCongNhan>(pageNum, pageSize);
+            return lst;
+        }
     }
 }
