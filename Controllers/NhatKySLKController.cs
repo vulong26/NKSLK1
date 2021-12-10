@@ -19,10 +19,28 @@ namespace NKSLK.Controllers
         // GET: NhatKySLK
         public ActionResult Index(int pageNum = 1, int pageSize = 10)
         {
+            Session["NhatKySLK_Index"] = "index";
             NKKhoanDAO dao = new NKKhoanDAO();
             return View(dao.listNKSLK(pageNum, pageSize));
         }
-
+        public ActionResult Ca1_NKSLK(int pageNum = 1, int pageSize = 10)
+        {
+            Session["NhatKySLK_Index"] = "1";
+            NKKhoanDAO dao = new NKKhoanDAO();
+            return View("Index", dao.list_NKSLK_Ca("1", pageNum, pageSize));
+        }
+        public ActionResult Ca2_NKSLK(int pageNum = 1, int pageSize = 10)
+        {
+            Session["NhatKySLK_Index"] = "2";
+            NKKhoanDAO dao = new NKKhoanDAO();
+            return View("Index", dao.list_NKSLK_Ca("2", pageNum, pageSize));
+        }
+        public ActionResult Ca3_NKSLK(int pageNum = 1, int pageSize = 10)
+        {
+            Session["NhatKySLK_Index"] = "3";
+            NKKhoanDAO dao = new NKKhoanDAO();
+            return View("Index", dao.list_NKSLK_Ca("3", pageNum, pageSize));
+        }
         public ActionResult NKSLK_All_Month(int pageNum = 1, int pageSize = 10)
         {
             NKKhoanDAO dao = new NKKhoanDAO();
@@ -243,6 +261,16 @@ namespace NKSLK.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //--------------------------------------------HUY---------------------------------------------
+        public ActionResult ChiTietCongNhan_NKSLK(int id, int pageNum = 1, int pageSize = 10)
+        {
+            NKKhoanDAO dao = new NKKhoanDAO();
+            ViewBag.NgayThucHien = dao.NgayThucHienKhoan(id);
+            ViewBag.Ca = dao.NKSLK_Ca(id);
+
+            return View(dao.list_NKSLK_chiTietCN(id, pageNum, pageSize));
         }
     }
 }
