@@ -1,0 +1,223 @@
+﻿@model PagedList.IPagedList<NKSLK.Models.DTO.CongNhan_NhatKy>
+@using PagedList.Mvc
+@using  NKSLK.Models.DTO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<style>
+    .pagination {
+    display: inline;
+    }
+
+        .pagination a {
+        color: black;
+            float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+            .pagination a.active {
+        background-color: #4CAF50;
+                color: white;
+        border-radius: 5px;
+    }
+
+            .pagination a:hover:not(.active) {
+        background-color: #ddd;
+                border-radius: 5px;
+    }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Danh sách công nhân</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+                <form class="row" action="/Home/admin" style="margin-bottom:10px; display:block;">
+                    <div style="padding:0px 0px 0px 12px ; height:40px;width:100px; background-color:blue; display:inline-block;">
+
+                        <a href="~/Home/Create" style="font-size:18px; color:white; text-decoration:none;">
+                            Thêm mới
+                        </a>
+
+                    </div>
+                    <div class="col-sm-12 col-md-3" style="padding:0px; display:inline-block; float:right;">
+                        <label>Tên</label>
+                        <input type="text" class="form-control" name="name" id="name" style="display:inline;width:55%" />
+                        <button class="btn btn-flat btn-success" type="submit">
+                            Tìm kiếm
+                        </button>
+                    </div>
+                </form>
+
+                <form action="/ThongKe/Loc">
+                    <div class="row" style="margin-bottom: 50px; height: 150px;">
+                        <div class="col-sm-10 col-md-2" style="margin-top:10px">
+                            @{string Checked = " "; }
+
+                            @if (Session["Ca"].ToString() == "TatCa") { Checked = "checked"; }
+                            <input type="radio" id="TatCa" name="Ca" value="TatCa" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="javascript">Tất cả</label><br>
+                            @{ Checked = "";}
+
+                            @if (Session["Ca"].ToString() == "Ca1") { Checked = "checked"; }
+                            <input type="radio" id="Ca1" name="Ca" value="Ca1" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="Ca1">Ca 1</label><br>
+                            @{ Checked = "";}
+
+                            @if (Session["Ca"].ToString() == "Ca2") { Checked = "checked"; }
+                            <input type="radio" id="Ca2" name="Ca" value="Ca2" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="Ca2">Ca 2</label><br>
+                            @{ Checked = "";}
+
+                            @if (Session["Ca"].ToString() == "Ca3") { Checked = "checked"; }
+                            <input type="radio" id="Ca3" name="Ca" value="Ca3" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="Ca3">Ca 3</label><br>
+                            @{ Checked = "";}
+
+                        </div>
+                        <div class="col-sm-10 col-md-4" style="margin-top:10px; border: 1px solid red;">
+                            @if (Session["ThoiGian"].ToString() == "TatCa") { Checked = "checked"; }
+                            <input type="radio" id="TatCa" name="ThoiGian" value="TatCa" onclick="TatCa()" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="javascript">Tất cả</label><br>
+                            @{ Checked = "";}
+
+                            @if (Session["ThoiGian"].ToString() == "Tuan") { Checked = "checked"; }
+                            <input type="radio" id="Tuan" name="ThoiGian" value="Tuan" onclick="Tuan()" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="javascript" style="width: 80px;">Tuần</label>
+                            <input type="date" id="Calendar_Tuan" name="Calendar_Tuan" value="@Session["Calendar_Tuan"]" style="display: inline-block;" />
+                            <br />
+                            @{ Checked = "";}
+
+                            @if (Session["ThoiGian"].ToString() == "Thang") { Checked = "checked"; }
+                            <input type="radio" id="Thang" name="ThoiGian" value="Thang" onclick="Thang()" style="margin-top: 10px; margin-left: 10px;" @Checked>
+                            <label for="javascript" style="width: 80px;">Tháng</label>
+                            <input type="month" id="Calendar_Thang" name="Calendar_Thang" value="@Session["Calendar_Thang"]" style="display: inline-block;" />
+                            <br />
+                            @{ Checked = "";}
+                        </div>
+                        <div class="col-sm-10 col-md-3" style="margin-top:60px; ">
+                            <label for="CongNhan">Công nhân</label><br />
+                            <select name="CongNhan" id="CongNhan">
+                                @{ string Selected = " ";}
+
+                                @if(@Session["CongNhan"].ToString() == "TatCa")
+                                {
+                                    Selected = "selected";
+                                }
+                                <option value="TatCa" @Selected>Tất cả</option>
+                                @{ Selected = " ";}
+
+                                @foreach (var item in ViewBag.CongNhan as ICollection<CongNhan>)
+                                {
+                                    if(@Session["CongNhan"].ToString() == item.MaCN.ToString())
+                                    {
+                                        Selected = "selected";
+                                    }
+                                    <option value="@item.MaCN" @Selected>@item.HoTen</option>
+                                    Selected = " ";
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm-10 col-md-1" style="margin-top:60px; ">
+                            @*<a href="~/ThongKe/Loc" style="font-size:18px; padding: 10px 20px; background-color: yellowgreen;color:white; text-decoration:none;">Lọc</a>*@
+                            <input type="submit" value="Tìm kiếm" style="height:30px; margin:20px 0px 0px 90px;">
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Tên công nhân</th>
+                                    <th>Ngày thực hiện</th>
+                                    <th>Giờ bắt đầu</th>
+                                    <th>Giờ kết thúc</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTen)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgayThucHien)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BatDau)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.KetThuc)
+                                        </td>
+
+                                        <td>
+                                            <a href="~/NhatKySLK/ChiTietCongNhan_NKSLK/@item.MaNhatKy">
+                                                <i class="fa fa-info-circle fa-lg" aria-hidden="true" style="margin-left: 20px; color: cadetblue"></i>
+                                            </a>
+
+                                            <a href="~/NKKhoan/Edit/@item.MaNhatKy">
+                                                <i class="far fa-edit" style="margin: 0px 10px;"></i>
+                                            </a>
+
+                                            <a href="~/NKKhoan/Delete/@item.MaNhatKy" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                                <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-3"></div>
+                    <div class="col-sm-12 col-md-8">
+                        <div class="pagination" id="dataTable_paginate">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            @if (Session["CongViec_NhatKy"].ToString() == "index")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum }))
+                            }
+                            else if (Session["CongViec_NhatKy"].ToString() == "Loc")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("Loc", new { pageNum }))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function TatCa() {
+        document.getElementById("Calendar_Tuan").style.display = 'none';
+        document.getElementById("Calendar_Thang").style.display = 'none';
+    }
+    function Tuan() {
+        document.getElementById("Calendar_Tuan").style.display = 'none';
+        document.getElementById("Calendar_Thang").style.display = 'inline-block';
+    }
+    function Thang() {
+        document.getElementById("Calendar_Tuan").style.display = 'inline-block';
+        document.getElementById("Calendar_Thang").style.display = 'none';
+    }
+    @*function TatCa() {
+        location.href = "@Url.Action("Index", "NhatKySLK")";
+    }*@
+</script>
+

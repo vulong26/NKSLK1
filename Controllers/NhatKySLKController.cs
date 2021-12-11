@@ -19,6 +19,7 @@ namespace NKSLK.Controllers
         // GET: NhatKySLK
         public ActionResult Index(int pageNum = 1, int pageSize = 10)
         {
+            Session["Controller"] = "NhatKySLK";
             Session["NhatKySLK_Index"] = "index";
             NKKhoanDAO dao = new NKKhoanDAO();
             return View(dao.listNKSLK(pageNum, pageSize));
@@ -27,19 +28,19 @@ namespace NKSLK.Controllers
         {
             Session["NhatKySLK_Index"] = "1";
             NKKhoanDAO dao = new NKKhoanDAO();
-            return View("Index", dao.list_NKSLK_Ca("1", pageNum, pageSize));
+            return View("Index", dao.list_NKSLK_Ca(pageNum, pageSize, "1"));
         }
         public ActionResult Ca2_NKSLK(int pageNum = 1, int pageSize = 10)
         {
             Session["NhatKySLK_Index"] = "2";
             NKKhoanDAO dao = new NKKhoanDAO();
-            return View("Index", dao.list_NKSLK_Ca("2", pageNum, pageSize));
+            return View("Index", dao.list_NKSLK_Ca(pageNum, pageSize, "2"));
         }
         public ActionResult Ca3_NKSLK(int pageNum = 1, int pageSize = 10)
         {
             Session["NhatKySLK_Index"] = "3";
             NKKhoanDAO dao = new NKKhoanDAO();
-            return View("Index", dao.list_NKSLK_Ca("3", pageNum, pageSize));
+            return View("Index", dao.list_NKSLK_Ca(pageNum, pageSize, "3"));
         }
         public ActionResult NKSLK_All_Month(int pageNum = 1, int pageSize = 10)
         {

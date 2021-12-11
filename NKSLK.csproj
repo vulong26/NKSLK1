@@ -143,6 +143,7 @@
     <Compile Include="Controllers\NhatKySLKController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
+    <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,8 +153,10 @@
     <Compile Include="Models\DAO\NKKhoanDAO.cs" />
     <Compile Include="Models\DAO\SanPhamDAO.cs" />
     <Compile Include="Models\DAO\TaiKhoanDAO.cs" />
+    <Compile Include="Models\DAO\ThongKeDAO.cs" />
     <Compile Include="Models\DTO\CongNhan.cs" />
     <Compile Include="Models\DTO\CongNhan_Luong.cs" />
+    <Compile Include="Models\DTO\CongNhan_NhatKy.cs" />
     <Compile Include="Models\DTO\CongViec.cs" />
     <Compile Include="Models\DTO\DanhMucCongNhan.cs" />
     <Compile Include="Models\DTO\DanhMucCongViec.cs" />
@@ -2537,6 +2540,7 @@
     <Content Include="Views\TaiKhoan\phantrang.cshtml" />
     <Content Include="Views\TaiKhoan\Create.cshtml" />
     <Content Include="Views\TaiKhoan\Edit.cshtml" />
+    <Content Include="Views\ThongKe\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

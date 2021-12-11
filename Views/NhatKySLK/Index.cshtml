@@ -63,7 +63,7 @@
                     </div>
                     <div class="col span-2-of-4" style="margin-top:10px">
                         @if (Session["NhatKySLK_Index"].ToString() == "2") { Checked = "checked"; }
-                        <input type="radio" id="css" name="fav_language" value="CSS" onclick="Ca2()" style="margin-top: 10px; margin-left: 10px; @Checked">
+                        <input type="radio" id="css" name="fav_language" value="CSS" onclick="Ca2()" style="margin-top: 10px; margin-left: 10px;" @Checked>
                         <label for="css">Ca 2</label><br>
                         @{ Checked = "";}
                     </div>
@@ -126,12 +126,31 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-5"></div>
-                    <div class="col-sm-12 col-md-7">
-                        <div class="pagination" id="dataTable_paginate" style="text-align:right">
-                            @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum })
-
-)
+                    <div class="col-sm-12 col-md-3"></div>
+                    <div class="col-sm-12 col-md-8">
+                        <div class="pagination" id="dataTable_paginate" style="">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            @{ string sesSion = Session["NhatKySLK_Index"].ToString();}
+                            @if (sesSion == "index")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("index", new { pageNum }))
+                            }
+                            else if (sesSion == "1")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("Ca1_NKSLK", new { pageNum }))
+                            }
+                            else if (sesSion == "2")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("Ca2_NKSLK", new { pageNum }))
+                            }
+                            else if (sesSion == "3")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("Ca3_NKSLK", new { pageNum }))
+                            }
+                            else if (sesSion == "ChiTietCongNhan_NKSLK")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("ChiTietCongNhan_NKSLK", new { pageNum }))
+                            }
                         </div>
                     </div>
                 </div>
