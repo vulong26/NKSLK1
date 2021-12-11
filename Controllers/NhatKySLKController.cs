@@ -50,7 +50,7 @@ namespace NKSLK.Controllers
             string name = Request["name"];
             if (Session["thang"] == null)
             {
-                if (month == null)
+                if (month == "" || month == null)
                 {
                     month = dt.Year.ToString() + "-" + dt.Month.ToString();
                 }
@@ -62,7 +62,7 @@ namespace NKSLK.Controllers
             }
             else
             {
-                if (month == null)
+                if (month == "" || month == null)
                 {
                     month = Session["thang"].ToString();
                 }

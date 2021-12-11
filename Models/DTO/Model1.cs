@@ -8,7 +8,7 @@ namespace NKSLK.Models.DTO
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=NKSLKModel")
+            : base("name=Model1")
         {
         }
 

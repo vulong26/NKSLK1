@@ -1,0 +1,196 @@
+﻿@model PagedList.IPagedList<NKSLK.Models.DTO.CongNhan>
+
+@using PagedList.Mvc
+
+@using NKSLK.Models.DAO
+@{ ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
+            tr{
+                text-align:center;
+                background-color:#5A77C8;
+            }
+            td{
+                text-align:left;
+                background-color:white;
+            }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Danh sách công nhân</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+                <form class="row" action="/CongNhan/Index" style="margin-bottom:10px; display:block;">
+                    <div style="padding:0px 0px 0px 12px ; height:40px;width:100px; background-color:blue; display:inline-block;border-radius: 0.25rem; text-align:center; vertical-align:middle;">
+
+                        <a href="~/CongNhan/Create" style="font-size:18px; color:white; text-decoration:none;">
+                            Thêm mới
+                        </a>
+
+                    </div>
+                    <div style="padding:0px; display:inline-block; float:right;">
+                        <label style="display:inline-block;">Tên</label>
+                        <input type="text" class="form-control" name="name" id="name" style="display:inline-block;width:55% " />
+                        <button class="btn btn-flat btn-success" type="submit" style="display:inline-block;">
+                            Tìm kiếm
+                        </button>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div style="margin-top:10px;float:left;">
+                        <ul>
+                            <li>
+                                <a href="~/CongNhan/CN_VeHuu" style="font-size:18px; color:black; text-decoration:none;">
+                                    Danh mục công nhân chuẩn bị về hưu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/CongNhan/CN_Tuoi30_45" style="font-size:18px; color:black; text-decoration:none;">
+                                    Danh mục công nhân có độ tuổi 30 - 45
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-top:10px;margin-right:50px; float:right;">
+                        <ul>
+                            <li>
+                                <a href="~/CongNhan/CN_ChucVu" style="font-size:18px; color:black; text-decoration:none;">
+                                    Gom nhóm danh mục công nhân theo chức vụ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/CongNhan/CN_PhongBan" style="font-size:18px; color:black; text-decoration:none;">
+                                    Gom nhóm danh mục công nhân theo phòng ban
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div style="clear:both;"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Họ Tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Giới tính</th>
+                                    <th>Phòng ban</th>
+                                    <th>Chức vụ</th>
+                                    <th>Quê quán</th>
+                                    <th>Lương HD</th>
+                                    <th>Lương BH</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTen)
+                                        </td>
+                                        <td style="text-align:right">
+                                            @{
+                                                var ngaysinh = "";
+                                                if(item.NgaySinh ==null)
+                                                {
+                                                    ngaysinh = "";
+                                                }
+                                                else
+                                                {
+                                                    ngaysinh = item.NgaySinh.ToString().Substring(0, 10);
+                                                }
+                                            }
+                                            @Html.DisplayFor(modelItem => ngaysinh)
+                                        </td>
+                                        <td style="text-align:left">
+                                            @{
+                                                var gt = "";
+                                                if (item.GioiTinh == true)
+                                                {
+                                                    gt = "Nam";
+                                                }
+
+                                                else
+                                                {
+                                                    gt = "Nữ";
+                                                }
+
+                                            }
+                                            @Html.DisplayFor(modelItem => gt)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhongBan)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ChucVu)
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.QueQuan)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LuongHD)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LuongBaoHiem)
+                                        </td>
+                                        <td>
+                                            <a href="~/CongNhan/Edit/@item.MaCN">
+                                                <i class="far fa-edit" style="margin: 0px 10px;"></i>
+                                            </a>
+
+                                            <a href="~/CongNhan/Delete/@item.MaCN" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                                <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-5"></div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="pagination" id="dataTable_paginate" style="text-align:right">
+                            @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum })
+
+                            )
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

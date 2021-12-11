@@ -14,7 +14,6 @@ namespace NKSLK.Controllers
         // GET: CongViec
         public ActionResult Index(int pageNum = 1, int pageSize = 10, string name = "")
         {
-            Session["CongViec_Index"] = "index";
             CongViecDAO dao = new CongViecDAO();
             //ViewBag.SoNKSLK = dao.SoNKSLK();
             return View(dao.listCV(pageNum, pageSize, name));
@@ -114,7 +113,6 @@ namespace NKSLK.Controllers
 
             CongViecDAO dao = new CongViecDAO();
             CongViec cv = dao.getById(id);
-
             cv.TenCV = TenCV;
             cv.DinhMucKhoan = Convert.ToDecimal(DMK);
             cv.DonViKhoan = DVK;

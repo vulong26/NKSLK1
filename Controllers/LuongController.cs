@@ -19,6 +19,7 @@ namespace NKSLK.Controllers
                 if (month == null)          //load đầu tiên
                 {
                     month = dt.Year.ToString() + "-" + dt.Month.ToString();
+                    Session["thang"] = month;
                 }
                 else                        // chọn tháng lần đầu
                 {

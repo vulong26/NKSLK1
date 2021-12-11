@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+@using NKSLK.Models.DTO;
+@{ var cn = (CongNhan)ViewBag.cn; }
+<style>
+    #container {
+        text-align: center;
+    }
+
+    form {
+        display: inline-block;
+        background-color: white;
+        width: 500px;
+    }
+
+    label {
+        display: inline-block;
+        margin-left: 50px;
+    }
+
+    input[type=text] {
+        display: inline-block;
+        float: right;
+        width: 50%;
+        margin-right: 80px;
+    }
+
+    input[type=date] {
+        display: inline-block;
+        float: right;
+        width: 50%;
+        margin-right: 80px;
+    }
+
+    input[type=number] {
+        display: inline-block;
+        float: right;
+        width: 50%;
+        margin-right: 80px;
+    }
+
+    .form-group {
+        display: block;
+        width: 500px;
+    }
+
+    .box-body {
+        text-align: left;
+    }
+
+    select {
+        width: 50%;
+        margin-left: 54px;
+        height: 38px;
+        padding: 6px 12px 6px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+    }
+</style>
+<div id="container">
+    <form action="Edit" method="post" role="form" enctype="multipart/form-data">
+        <input type="hidden" id="id" name="id" value="@cn.MaCN" />
+            <div style="text-align:center; margin:20px 0px 20px 0px; color:grey;">
+                <h3 class="box-title">Chỉnh sửa </h3>
+            </div>
+            <div class="box-body">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Họ Tên:</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Tên công nhân" value="@cn.HoTen">
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label for="">Ngày sinh:</label>
+                            <input type="text" class="form-control" name="dob" id="dob" placeholder="Ngày sinh" value="@cn.NgaySinh.ToString().Substring(0,10)">
+                        </div>
+                        <div class="form-group">
+                            <label for="Gioitinh">Giới tính:</label>
+                            <select id="gt" name="gt" value="@cn.GioiTinh">
+                                <option value="true">Nam</option>
+                                <option value="false">Nữ</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phongban">Phòng ban:</label>
+                            <input type="text" list="lstphongban" name="phongban" class="form-control" id="phongban" value="@cn.PhongBan">
+                            <datalist id="lstphongban">
+                                @foreach (var item in ViewBag.listPhongban)
+                                {
+                                    <option>@item</option>
+                                }
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="chucvu">Chức vụ:</label>
+                            <input type="text" list="list=" lstchucvu"" name="chucvu" class="form-control" id="chucvu" value="@cn.ChucVu">
+                            <datalist id="list=" lstchucvu"">
+                                @foreach (var item in ViewBag.listChucVu)
+                                {
+                                    <option>@item</option>
+                                }
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="quequan">Quê Quán:</label>
+                            <input type="text" name="quequan" class="form-control" id="quequan" value="@cn.QueQuan">
+                        </div>
+                        <div class="form-group">
+                            <label for="luonghd">Lương hợp đồng:</label>
+                            <input type="number" name="luonghd" class="form-control" id="luonghd" max="999999999" value="@cn.LuongHD">
+                        </div>
+                        <div class="form-group">
+                            <label for="luongbh">Lương bảo hiểm:</label>
+                            <input type="number" name="luongbh" class="form-control" id="luongbh" max="999999999" value="@cn.LuongBaoHiem">
+                        </div>
+                    </div>
+            </div>
+        <div class="box-footer">
+            <input type="submit" class="btn btn-primary" value="Sửa" />
+        </div>
+    </form>
+</div>
+<div style="margin-left:50px;">
+    @Html.ActionLink("Trở về", "Index")
+</div>
