@@ -137,8 +137,8 @@
     <Compile Include="Areas\User\Controllers\UserController.cs" />
     <Compile Include="Areas\User\Data\DAO\UserDAO.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\CongNhanController.cs" />
     <Compile Include="Controllers\CongViecController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LuongController.cs" />
     <Compile Include="Controllers\NhatKySLKController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -2501,10 +2501,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Home\_adminLTE.cshtml" />
-    <Content Include="Views\Home\admin.cshtml" />
-    <Content Include="Views\Home\Create.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\NhatKySLK\Create.cshtml" />
     <Content Include="Views\NhatKySLK\Delete.cshtml" />
     <Content Include="Views\NhatKySLK\Details.cshtml" />
@@ -2523,6 +2519,13 @@
     <Content Include="Views\SanPham\Create.cshtml" />
     <Content Include="Views\SanPham\Edit.cshtml" />
     <Content Include="Views\NhatKySLK\ChiTietCongNhan_NKSLK.cshtml" />
+    <Content Include="Views\CongNhan\CN_Tuoi30_45.cshtml" />
+    <Content Include="Views\CongNhan\CN_VeHuu.cshtml" />
+    <Content Include="Views\CongNhan\Create.cshtml" />
+    <Content Include="Views\CongNhan\Edit.cshtml" />
+    <Content Include="Views\CongNhan\Index.cshtml" />
+    <Content Include="Views\CongNhan\CN_ChucVu.cshtml" />
+    <Content Include="Views\CongNhan\CN_PhongBan.cshtml" />
     <None Include="Views\Shared\_adminLTE.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
