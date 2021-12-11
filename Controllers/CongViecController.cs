@@ -114,7 +114,6 @@ namespace NKSLK.Controllers
 
             CongViecDAO dao = new CongViecDAO();
             CongViec cv = dao.getById(id);
-
             cv.TenCV = TenCV;
             cv.DinhMucKhoan = Convert.ToDecimal(DMK);
             cv.DonViKhoan = DVK;
