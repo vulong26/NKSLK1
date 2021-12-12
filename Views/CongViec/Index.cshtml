@@ -59,7 +59,7 @@
                     </div>
                     <div class="row">
                         <div class="col span-1-of-2" style="margin-top:10px">
-                            @{string Checked = " "; }
+                            @{string Checked = ""; }
                             @if (Session["CongViec_Index"].ToString() == "CV_NhieuSLKNhat") { Checked = "checked"; }
                             <input type="radio" id="html" name="fav_language" value="HTML" onclick="NhieuSLKNhat()" style="margin-top: 10px; margin-left: 10px;" @Checked>
                             <label for="html">Công viện nhiều sản lượng khoán nhất</label><br>
