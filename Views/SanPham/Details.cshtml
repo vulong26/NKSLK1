@@ -1,0 +1,66 @@
+﻿@model NKSLK.Models.DTO.SanPham
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sản phẩm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDangKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDangKy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HanSD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HanSD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuyCach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuyCach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDangKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDangKy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
+    @Html.ActionLink("Back to List", "phantrang")
+</p>

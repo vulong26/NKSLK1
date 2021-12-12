@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="tentk">Tài khoản</label>
                             <input type="text" class="form-control" name="tentk" id="tentk" placeholder="Tên tài khoản">
-                            @Html.ValidationMessageFor(model=>model.TaiKhoan1)
+                            @Html.ValidationMessageFor(model => model.TaiKhoan1)
                         </div>
                         <div class="form-group">
                             <label for="mk">Mật khẩu </label>
@@ -28,8 +28,8 @@
                             @Html.ValidationMessageFor(model => model.MatKhau)
                         </div>
                         <div class="form-group">
-                            
-                            <input type="text" name="phanquyen" class="form-control" id="phanquyen" value="user" readonly hidden >
+
+                            <input type="text" name="phanquyen" class="form-control" id="phanquyen" value="user" readonly hidden>
                             @Html.ValidationMessageFor(model => model.PhanQuyen)
                         </div>
                         <div class="form-group">
@@ -38,12 +38,13 @@
                             @Html.ValidationMessageFor(model => model.MaCN)
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
         <div class="box-footer">
             <input type="submit" class="btn btn-primary" value="Đăng kí" />
         </div>
+        <div style="margin-top:2%">@Html.ActionLink("Về trang đăng nhập", "DangXuat", "User")</div>
     </form>
 </body>
 
