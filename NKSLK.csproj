@@ -140,6 +140,7 @@
     <Compile Include="Controllers\CongController.cs" />
     <Compile Include="Controllers\CongNhanController.cs" />
     <Compile Include="Controllers\CongViecController.cs" />
+    <Compile Include="Controllers\GioCongChuanController.cs" />
     <Compile Include="Controllers\LuongController.cs" />
     <Compile Include="Controllers\NhatKySLKController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Models\DAO\CongDAO.cs" />
     <Compile Include="Models\DAO\CongNhanDAO.cs" />
     <Compile Include="Models\DAO\CongViecDAO.cs" />
+    <Compile Include="Models\DAO\GioCongChuanDAO.cs" />
     <Compile Include="Models\DAO\LuongDAO.cs" />
     <Compile Include="Models\DAO\NKKhoanDAO.cs" />
     <Compile Include="Models\DAO\SanPhamDAO.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Models\DTO\CTCong.cs" />
     <Compile Include="Models\DTO\DanhMucCongNhan.cs" />
     <Compile Include="Models\DTO\DanhMucCongViec.cs" />
+    <Compile Include="Models\DTO\GioCongChuan.cs" />
     <Compile Include="Models\DTO\Model1.cs" />
     <Compile Include="Models\DTO\NhatKySLK.cs" />
     <Compile Include="Models\DTO\NKK_CongNhan.cs" />
@@ -171,6 +174,7 @@
     <Compile Include="Models\DTO\SanPham.cs" />
     <Compile Include="Models\DTO\sysdiagram.cs" />
     <Compile Include="Models\DTO\TaiKhoan.cs" />
+    <Compile Include="Models\DTO\ThoiGianCaNhan_CongNhan.cs" />
     <Compile Include="Models\DTO\ToNhanCong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2535,6 +2539,8 @@
     <Content Include="Views\CongNhan\CN_PhongBan.cshtml" />
     <Content Include="Views\Cong\Index.cshtml" />
     <Content Include="Views\Cong\Detail.cshtml" />
+    <Content Include="Views\GioCongChuan\Index.cshtml" />
+    <Content Include="Views\GioCongChuan\ChiTietGioCongChuan.cshtml" />
     <None Include="Views\Shared\_adminLTE.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

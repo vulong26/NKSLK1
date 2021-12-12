@@ -1,0 +1,136 @@
+﻿@model PagedList.IPagedList<NKSLK.Models.DTO.GioCongChuan>
+@using PagedList.Mvc
+@using NKSLK.Models.DTO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-bold" style="margin-left: 350px; font-family: 'Times New Roman', Times, serif;">Danh sách công nhân làm việc theo khoán</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+
+                <form action="/GioCongChuan/ChiTietGioCongChuan">
+                    <div class="row" style="margin-bottom: 50px;">
+                        <div class="col-sm-10 col-md-2" style="margin-top:10px">
+
+                        </div>
+                        <div class="col-sm-10 col-md-4" style="margin-top:10px;">
+                            <label for="javascript" style="width: 80px;">Tuần</label>
+                            <input type="date" id="Ngay" name="Ngay" value="@Session["Ngay"]" style="display: inline-block;" />
+                            <input type="submit" value="Vượt giờ công chuẩn" style="height:30px; margin:20px 0px 0px 90px;">
+                            <a href="~/GioCongChuan/Index" style="font-size:18px; padding: 2px 20px; background-color: lightgray;color:black; border: 1px solid black">Tất cả</a>
+                            
+                            <br />
+                        </div>
+                        <div class="col-sm-10 col-md-3" style="margin-top:15px; ">
+
+                        </div>
+                        <div class="col-sm-10 col-md-1" style="margin-top:60px; ">
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 200px;">Ngày đầu tuần</th>
+                                    <th style="width: 200px;">Ngày cuối tuần</th>
+                                    <th style="width: 200px;">Thời gian công chuẩn</th>
+                                    <th style="width: 200px;">Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @{ string DauTuan = item.NgayDauTuan.ToString().Substring(0, 10);}
+                                            <p>@DauTuan</p>
+                                        </td>
+                                        <td>
+                                            @{ string CuoiTuan = item.NgayCuoiTuan.ToString().Substring(0, 10);}
+                                            <p>@CuoiTuan</p>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ThoiGianCongChuan)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TrangThai)
+                                        </td>
+
+                                        <td>
+                                            @*@{ string ngay = item.NgayDauTuan.ToString();}
+                                            @{string @date = ngay.Substring(6) + ngay.Substring(3, 2) + ngay.Substring(0, 2);}
+                                            <a href="~/GioCongChuan/ChiTietGioCongChuan/20211006">
+                                                <i class="fa fa-info-circle fa-lg" aria-hidden="true" style="margin-left: 20px; color: cadetblue"></i>
+                                            </a>*@
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-3"></div>
+                    <div class="col-sm-12 col-md-8">
+                        <div class="pagination" id="dataTable_paginate">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            @if (Session["GioCongChuan"].ToString() == "index")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum }))
+                            }
+                            else if (Session["GioCongChuan"].ToString() == "TimKiem")
+                            {
+                                @Html.PagedListPager(Model, pageNum => Url.Action("TimKiem", new { pageNum }))
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+

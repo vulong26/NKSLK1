@@ -271,7 +271,7 @@ namespace NKSLK.Controllers
             ViewBag.NgayThucHien = dao.NgayThucHienKhoan(id);
             ViewBag.Ca = dao.NKSLK_Ca(id);
 
-            return View(dao.list_NKSLK_chiTietCN(id, pageNum, pageSize));
+            return View(dao.list_NKSLK_chiTietCN(pageNum, pageSize, id));
         }
     }
 }

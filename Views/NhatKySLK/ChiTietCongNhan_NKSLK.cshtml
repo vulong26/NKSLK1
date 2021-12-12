@@ -42,7 +42,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <i class="fa fa-arrow-left fa-2x" aria-hidden="true" style="margin: 20px;">
-        @{ string a = Session["CongViec_NhatKy"].ToString();}
+
         @if (Session["Controller"].ToString() == "NhatKySLK")
         {
             if (Session["NhatKySLK_Index"].ToString() == "index" || Session["NhatKySLK_Index"] == null)
@@ -104,7 +104,7 @@
 
                         </div>
 
-</form>
+                </form>
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -154,7 +154,7 @@
                     <div class="col-sm-12 col-md-7">
                         <div class="pagination" id="dataTable_paginate" style="text-align:right">
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                            @Html.PagedListPager(Model, pageNum => Url.Action("XemChiTiet", new { pageNum }))
+                            @Html.PagedListPager(Model, pageNum => Url.Action("ChiTietCongNhan_NKSLK", new { pageNum }))
                         </div>
                     </div>
                 </div>

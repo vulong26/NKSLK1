@@ -65,7 +65,7 @@ namespace NKSLK.Controllers
             {
                 if (ThoiGian == "Tuan")
                 {
-                    if(Request["Calendar_Tuan"] == null)
+                    if(Request["Calendar_Tuan"] == null || Request["Calendar_Tuan"].ToString() == "")
                     {
                         Ngay = Session["Calendar_Tuan"].ToString();
                     }
@@ -77,7 +77,7 @@ namespace NKSLK.Controllers
                 }
                 else if (ThoiGian == "Thang")
                 {
-                    if (Request["Calendar_Thang"] == null)
+                    if (Request["Calendar_Thang"] == null || Request["Calendar_Thang"].ToString() == "")
                     {
                         Ngay = Session["Calendar_Thang"].ToString();
                     }
