@@ -1,10 +1,14 @@
-﻿using NKSLK.Models.DAO;
-using NKSLK.Models.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using NKSLK.Models.DAO;
+using NKSLK.Models.DTO;
+using PagedList;
 
 namespace NKSLK.Controllers
 {
@@ -15,25 +19,84 @@ namespace NKSLK.Controllers
         {
             return View();
         }
-
+        public ActionResult Create()
+        {
+            return View();
+        }
 
         public ActionResult phantrang(int pageNum = 1, int pageSize = 5, string name = "")
         {
             SanPhamDAO dao = new SanPhamDAO();
             return View(dao.listSP(pageNum, pageSize, name));
         }
-        public ActionResult SP_NDK(int pageNum = 1, int pageSize = 10, string day = "")
+        public ActionResult SP_NDK(int pageNum = 1, int pageSize = 5)
         {
             SanPhamDAO dao = new SanPhamDAO();
             //ViewBag.SoNKSLK = dao.SoNKSLK();
-            return View("phantrang", dao.listSP_NDK(pageNum, pageSize, day));
+            //string ThoiGian;
+            //if (Request["ThoiGian"] == null)
+            //{
+            //    ThoiGian = Session["ThoiGian"].ToString();
+            //}
+            //else
+            //{
+            //    ThoiGian = Request["ThoiGian"].ToString();
+            //    Session["ThoiGian"] = ThoiGian;
+            //}
+
+            //string Ngay = "";
+
+            //if (ThoiGian != "TatCa")
+            //{
+            //    if (ThoiGian == "Tuan")
+            //    {
+            //        if (Request["Calendar_Tuan"] == null)
+            //        {
+            //            Ngay = Session["Calendar_Tuan"].ToString();
+            //        }
+            //        else
+            //        {
+            //            Ngay = Request["Calendar_Tuan"];
+            //            Session["Calendar_Tuan"] = Ngay;
+            //        }
+            //    }
+            //    else if (ThoiGian == "Thang")
+            //    {
+            //        if (Request["Calendar_Thang"] == null)
+            //        {
+            //            Ngay = Session["Calendar_Thang"].ToString();
+            //        }
+            //        else
+            //        {
+            //            Ngay = Request["Calendar_Thang"];
+            //            Session["Calendar_Thang"] = Ngay;
+            //        }
+            //    }
+            //}
+
+            return View("phantrang", dao.listSP_NDK(pageNum, pageSize));
         }
-        public ActionResult SP_HSD(int pageNum = 1, int pageSize = 10)
+        public ActionResult SP_HSD(int pageNum = 1, int pageSize = 5)
         {
             SanPhamDAO dao = new SanPhamDAO();
             //ViewBag.SoNKSLK = dao.SoNKSLK();
             return View("phantrang", dao.listSP_HSD(pageNum, pageSize));
         }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SanPham sp = db.SanPhams.Find(id);
+            if (sp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sp);
+        }
+
         public ActionResult Delete(int id)
         {
             SanPhamDAO dao = new SanPhamDAO();
@@ -41,10 +104,7 @@ namespace NKSLK.Controllers
             return Redirect("~/SanPham/phantrang");
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+     
         public ActionResult Edit(int id)
         {
             SanPhamDAO dao = new SanPhamDAO();

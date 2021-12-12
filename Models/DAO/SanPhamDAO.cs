@@ -22,9 +22,9 @@ namespace NKSLK.Models.DAO
             var lst = db.Database.SqlQuery<SanPham>(q).ToPagedList<SanPham>(pageNum, pageSize);
             return lst;
         }
-        public IEnumerable<SanPham> listSP_NDK(int pageNum, int pageSize, string day)
+        public IEnumerable<SanPham> listSP_NDK(int pageNum, int pageSize)
         {
-            string q = "SELECT * FROM dbo.SanPham WHERE NgayDangKy < '" + day + "'";
+            string q = "SELECT * FROM dbo.SanPham WHERE NgayDangKy < '20210815'";
             var lst = db.Database.SqlQuery<SanPham>(q).ToPagedList<SanPham>(pageNum, pageSize);
             return lst;
         }
@@ -34,6 +34,7 @@ namespace NKSLK.Models.DAO
             var lst = db.Database.SqlQuery<SanPham>(q).ToPagedList<SanPham>(pageNum, pageSize);
             return lst;
         }
+        
         public void Delete(int id)
         {
             SanPham sp = db.SanPhams.Find(id);
