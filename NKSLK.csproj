@@ -137,6 +137,7 @@
     <Compile Include="Areas\User\Controllers\UserController.cs" />
     <Compile Include="Areas\User\Data\DAO\UserDAO.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\CongController.cs" />
     <Compile Include="Controllers\CongNhanController.cs" />
     <Compile Include="Controllers\CongViecController.cs" />
     <Compile Include="Controllers\LuongController.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAO\CongDAO.cs" />
     <Compile Include="Models\DAO\CongNhanDAO.cs" />
     <Compile Include="Models\DAO\CongViecDAO.cs" />
     <Compile Include="Models\DAO\LuongDAO.cs" />
@@ -155,9 +157,11 @@
     <Compile Include="Models\DAO\TaiKhoanDAO.cs" />
     <Compile Include="Models\DAO\ThongKeDAO.cs" />
     <Compile Include="Models\DTO\CongNhan.cs" />
+    <Compile Include="Models\DTO\CongNhan_Cong.cs" />
     <Compile Include="Models\DTO\CongNhan_Luong.cs" />
     <Compile Include="Models\DTO\CongNhan_NhatKy.cs" />
     <Compile Include="Models\DTO\CongViec.cs" />
+    <Compile Include="Models\DTO\CTCong.cs" />
     <Compile Include="Models\DTO\DanhMucCongNhan.cs" />
     <Compile Include="Models\DTO\DanhMucCongViec.cs" />
     <Compile Include="Models\DTO\Model1.cs" />
@@ -2529,6 +2533,8 @@
     <Content Include="Views\CongNhan\Index.cshtml" />
     <Content Include="Views\CongNhan\CN_ChucVu.cshtml" />
     <Content Include="Views\CongNhan\CN_PhongBan.cshtml" />
+    <Content Include="Views\Cong\Index.cshtml" />
+    <Content Include="Views\Cong\Detail.cshtml" />
     <None Include="Views\Shared\_adminLTE.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
