@@ -42,21 +42,37 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <i class="fa fa-arrow-left fa-2x" aria-hidden="true" style="margin: 20px;">
-        @if (Session["NhatKySLK_Index"].ToString() == "index")
+        @{ string a = Session["CongViec_NhatKy"].ToString();}
+        @if (Session["Controller"].ToString() == "NhatKySLK")
         {
-            @Html.ActionLink("Back to List", "index")
+            if (Session["NhatKySLK_Index"].ToString() == "index" || Session["NhatKySLK_Index"] == null)
+            {
+                @Html.ActionLink("Back to List", "index")
+            }
+            else if (Session["NhatKySLK_Index"].ToString() == "1")
+            {
+                @Html.ActionLink("Back to List", "Ca1_NKSLK")
+            }
+            else if (Session["NhatKySLK_Index"].ToString() == "2")
+            {
+                @Html.ActionLink("Back to List", "Ca2_NKSLK")
+            }
+            else if (Session["NhatKySLK_Index"].ToString() == "3")
+            {
+                @Html.ActionLink("Back to List", "Ca3_NKSLK")
+            }
         }
-        else if (Session["NhatKySLK_Index"].ToString() == "1")
+
+        @if (Session["Controller"].ToString() == "ThongKe")
         {
-            @Html.ActionLink("Back to List", "Ca1_NKSLK")
-        }
-        else if (Session["NhatKySLK_Index"].ToString() == "2")
-        {
-            @Html.ActionLink("Back to List", "Ca2_NKSLK")
-        }
-        else if (Session["NhatKySLK_Index"].ToString() == "3")
-        {
-            @Html.ActionLink("Back to List", "Ca3_NKSLK")
+            if (Session["CongViec_NhatKy"].ToString() == "index" || Session["CongViec_NhatKy"] == null)
+            {
+                @Html.ActionLink("Back to List", "index", "ThongKe")
+            }
+            else if (Session["CongViec_NhatKy"].ToString() == "Loc")
+            {
+                @Html.ActionLink("Back to List", "Loc", "ThongKe")
+            }
         }
 
     </i>
@@ -69,7 +85,7 @@
                     </div>
 
                         <div>
-                            <p style="margin-left: 300px;font-size:30px;font-weight: bold;font-style: italic;">Ngày thực hiện khoán: @ViewBag.NgayThucHien</p>
+                            <p style="margin-left: 300px;font-size:30px;font-weight: bold;font-style: italic;">Ngày thực hiện khoán: @ViewBag.NgayThucHien.ToString().Substring(0, 10)</p>
 
                             @{ string ca = "";}
                             @if ((int)ViewBag.Ca == 1)
@@ -84,7 +100,7 @@
                             {
                                 ca = "Ca 3 (22:00 - 6:00)";
                             }
-                            <p style="margin-left: 450px;font-size:30px;font-weight: bold;font-style: italic;">@ca</p>
+                            <p style="margin-left: 400px;font-size:30px;font-weight: bold;font-style: italic;">@ca</p>
 
                         </div>
 

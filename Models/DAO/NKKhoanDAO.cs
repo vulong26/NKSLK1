@@ -107,7 +107,7 @@ namespace NKSLK.Models.DAO
         //}
 
         //------------------------------------------------HUY----------------------------------------------------
-        public IEnumerable<NhatKySLK> list_NKSLK_Ca(string ca, int pageNum, int pageSize)
+        public IEnumerable<NhatKySLK> list_NKSLK_Ca(int pageNum, int pageSize, string ca)
         {
             string BatDau = "";
             if (ca == "1")
@@ -144,7 +144,7 @@ namespace NKSLK.Models.DAO
             int ca = db.Database.SqlQuery<int>(q).FirstOrDefault();
             return ca;
         }
-        public IEnumerable<NKSLK_ChiTietCongNhan> list_NKSLK_chiTietCN(int MaNhatKy, int pageNum, int pageSize)
+        public IEnumerable<NKSLK_ChiTietCongNhan> list_NKSLK_chiTietCN(int pageNum, int pageSize, int MaNhatKy)
         {
             string q = "EXEC dbo.ChiTietNhatKy_CN @MaNhatKy = " + MaNhatKy;
             var lst = db.Database.SqlQuery<NKSLK_ChiTietCongNhan>(q).ToPagedList<NKSLK_ChiTietCongNhan>(pageNum, pageSize);

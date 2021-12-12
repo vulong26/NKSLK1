@@ -1,0 +1,123 @@
+﻿@model PagedList.IPagedList<NKSLK.Models.DTO.CTCong>
+
+@using PagedList.Mvc
+
+@using NKSLK.Models.DAO
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_adminLTE.cshtml";
+}
+@using NKSLK.Models.DTO;
+@{ var ctcong = (CongNhan_Cong)ViewData["cong"]; }
+
+
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Chi tiết công trong tháng</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive" style="overflow: hidden">
+            <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
+                <div style="float:left; display:inline-block;">
+                    <p style="font-size:20px;font-weight: bold;font-style: italic;">Mã công nhân: @ctcong.MaCN</p>
+
+                    <p style="font-size:20px;font-weight: bold;font-style: italic;">Tên công nhân: @ctcong.TenCN</p>
+                </div>
+                <div style="float:right; display:inline-block;">
+                    @{ 
+                        string nam = @Session["thang_cong"].ToString().Substring(0, 4);
+                        string thang = @Session["thang_cong"].ToString().Substring(5, 2);
+                        string thang1 = thang + "/" + nam;
+                     }
+                    <p style="font-size:20px;font-weight: bold;font-style: italic;">Tổng số công trong tháng @thang1: @ctcong.Cong</p>
+                </div>
+                <div style="clear:both;"></div>
+                       
+
+                        
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Ngày thực hiện</th>
+                                    <th>Giờ bắt đầu</th>
+                                    <th>Giờ kết thúc</th>
+                                    <th>Công trong ngày</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="width: 300px;">
+                                            @{ var ngay = item.Ngay.ToString().Substring(0, 10);}
+                                            @Html.DisplayFor(modelItem => ngay)
+                                        </td>
+                                        <td style="width: 150px;">
+                                            @Html.DisplayFor(modelItem => item.GioBatDau)
+                                        </td>
+                                        <td style="width: 150px;">
+                                            @Html.DisplayFor(modelItem => item.GioKetThuc)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Cong)
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-5"></div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="pagination" id="dataTable_paginate" style="text-align:right">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                            @Html.PagedListPager(Model, pageNum => Url.Action("Detail", new { pageNum }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-left:50px;">
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    </div>
+</div>
+
+<div>
+
+</div>
+
