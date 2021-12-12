@@ -142,7 +142,7 @@
                                                     }
 
                                                 }
-                                                
+
                                                 @Html.DisplayFor(modelItem => gt)
                                             </td>
                                             <td>
@@ -184,7 +184,7 @@
                                             </td>
 
                                         </tr>
-                                        
+
 
                                     </tbody>
                                 </table>
@@ -199,11 +199,18 @@
             else
             {
                 <i class="fas fa-sign-in-alt"></i>
-                @Html.ActionLink("Đăng nhập", "DangNhap", "User", htmlAttributes: new { @class = "DangNhap" })}
+                @Html.ActionLink("Đăng nhập", "DangNhap", "User", htmlAttributes: new { @class = "DangNhap" })
+                <div class="link">
+                    @Html.ActionLink("Đăng ký", "Create", "User", htmlAttributes: new { @class = "Create" })
+                </div>
+
+
+            }
 
 
         }
-    <div class="link" >
-        @Html.ActionLink("Đăng ký", "Create", "User", htmlAttributes: new { @class = "Create" })
-    </div></div>
+        <div class="link">
+            @Html.ActionLink("Đăng ký", "Create", "User", htmlAttributes: new { @class = "Create" })
+        </div>
+    </div>
 </body>

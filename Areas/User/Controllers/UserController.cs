@@ -28,17 +28,13 @@ namespace NKSLK.Areas.User.Controllers
             string sTaikhoan = f["txtTaiKhoan"].ToString();
             string sMatKhau = f["txtMatKhau"].ToString();
 
-            TaiKhoan tk = db.TaiKhoans.SingleOrDefault(n => n.TaiKhoan1 == sTaikhoan && n.MatKhau == sMatKhau);
+            TaiKhoan tk = db.TaiKhoans.FirstOrDefault(n => sTaikhoan==n.TaiKhoan1 && n.MatKhau==sMatKhau);
             if (tk != null && tk.PhanQuyen=="admin")
             {
                 
                 Session["admin"] = tk;
-                ViewBag.ThongBao = "Đăng nhập thành công!!";
-
-
-                //dao.getById(tk.MaTK).MaCN= 
-
-                 return Redirect("~/Home/admin");
+                
+                 return Redirect("~/CongNhan/Index");
             }
             else if (tk != null && tk.PhanQuyen == "user")
             {
