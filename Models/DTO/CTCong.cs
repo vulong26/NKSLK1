@@ -12,6 +12,7 @@ namespace NKSLK.Models.DTO
         public TimeSpan GioBatDau { get; set; }
 
         public TimeSpan GioKetThuc { get; set; }
+        public string TrangThai { get; set; }
         public double Cong { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace NKSLK.Models.DTO
     {
         public int? MaCN { get; set; }
 
-        public string TenCN { get; set; }
+        public string HoTen { get; set; }
 
         public double Cong { get; set; }
     }

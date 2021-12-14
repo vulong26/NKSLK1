@@ -1,5 +1,7 @@
 ﻿@model PagedList.IPagedList<NKSLK.Models.DTO.CongNhan_Cong>
+
 @using PagedList.Mvc
+@using NKSLK.Models.DAO
 
 <style>
     .pagination {
@@ -44,7 +46,7 @@
 
 <!-- Page Heading -->
 <div style="text-align:center;">
-    <h1 class="h3 mb-2 text-gray-800">Danh sách ngày công của công nhân</h1>
+    <h1 class="h3 mb-2 text-gray-800">Danh sách công nhân vượt giờ công chuẩn trong tuần</h1>
 </div>
 
 
@@ -54,16 +56,16 @@
     <div class="card-body">
         <div class="table-responsive" style="overflow: hidden">
             <div class="dataTables_wrapper dt-bootstrap4 no-footer" id="dataTable_wrapper">
-                <form class="row" action="/Cong/Index" style="margin-bottom:10px; display:block;">
+                <form class="row" action="/Cong/Index_VuotCong" style="margin-bottom:10px; display:block;">
                     <div style="display:inline-flex;">
                         <div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display:inline-block; float:right;">
-                            <label for="month">Tìm theo tháng: </label>
-                            <input type="month" id="month" name="month" value="@Session["thang_cong"]">
+                            <label for="day">Tìm theo ngày : </label>
+                            <input type="date" id="day" name="day" value="@Session["ngay_cong"]">
                         </div>
                         @*<div class="col-sm-12 col-md-3" style="margin:0px 0px 0px 40px; display: inline-block; float: right;">
-                                <label for="month">Tìm kiếm theo tên: </label>
-                                <input type="text" id="name" name="name" value="@Session["name"]">
-                            </div>*@
+                    <label for="month">Tìm kiếm theo tên: </label>
+                    <input type="text" id="name" name="name" value="@Session["name"]">
+                </div>*@
                         <div class="timkiem">
                             <input type="submit" value="Tìm kiếm" style="height:30px; margin:20px 0px 0px 90px;">
                         </div>
@@ -71,6 +73,29 @@
                     </div>
 
                 </form>
+                <div style="clear:both;"></div>
+                @{
+                    double gio = 0;
+                    string dautuan1 = "";
+                    string cuoituan1 = "";
+                    CongDAO dao = new CongDAO();
+                    if (Session["ngay_cong"] != null)
+                    {
+                        gio = dao.ThoiGianCongChuan(Session["ngay_cong"].ToString());
+                        ViewBag.gio = gio;
+                        DateTime dautuan = dao.NgayDauTuan(Session["ngay_cong"].ToString());
+                        DateTime cuoituan = dao.NgayCuoiTuan(Session["ngay_cong"].ToString());
+                        dautuan1 = dautuan.Day.ToString() + "/" + dautuan.Month.ToString() + "/" + dautuan.Year.ToString();
+                        cuoituan1 = cuoituan.Day.ToString() + "/" + cuoituan.Month.ToString() + "/" + cuoituan.Year.ToString();
+                    }
+                }
+                <div style="float:right; display:inline-block;">
+                    <p style="font-size:20px;font-weight: bold;font-style: italic;">Giờ công chuẩn trong tuần: @gio</p>
+                </div>
+                <div style="float:left; display:inline-block;">
+                    <p style="font-size:20px;font-weight: bold;font-style: italic;">Tuần bắt đầu từ ngày @dautuan1 đến @cuoituan1 </p>
+                </div>
+
 
                 <div class="row" style="display:block;">
                     <div class="col-sm-12">
@@ -79,7 +104,7 @@
                                 <tr>
                                     <th>Mã công nhân</th>
                                     <th>Họ tên</th>
-                                    <th>Công</th>
+                                    <th>Giờ làm việc</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,7 +119,7 @@
                                         </td>
                                         <td style="text-align:left">
                                             @Html.DisplayFor(modelItem => item.Cong)
-                                            <a href="~/Cong/Detail/@item.MaCN" style="float:right;">
+                                            <a href="/Cong/Detail1/@item.MaCN" style="float:right;">
                                                 @*<i class="far fa-window-restore" style="margin-left: 20px"></i>*@
                                                 <i class="fa fa-info-circle fa-lg" aria-hidden="true" style="margin-left: 20px; color: cadetblue"></i>
                                             </a>
@@ -102,14 +127,14 @@
 
 
                                         @*<td>
-                                                <a href="~/NKKhoan/Edit/@item.MaC">
-                                                    <i class="far fa-edit" style="margin: 0px 10px;"></i>
-                                                </a>
+                                    <a href="~/NKKhoan/Edit/@item.MaC">
+                                        <i class="far fa-edit" style="margin: 0px 10px;"></i>
+                                    </a>
 
-                                                <a href="~/NKKhoan/Delete/@item.MaNhatKy" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
-                                                    <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
-                                                </a>
-                                            </td>*@
+                                    <a href="~/NKKhoan/Delete/@item.MaNhatKy" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                        <i class="far fa-trash-alt" style="margin: 0px 10px;"></i>
+                                    </a>
+                                </td>*@
                                     </tr>
                                 }
 
@@ -123,7 +148,7 @@
                     <div class="col-sm-12 col-md-7">
                         <div class="pagination" id="dataTable_paginate" style="text-align:center">
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                            @Html.PagedListPager(Model, pageNum => Url.Action("Index", new { pageNum }))
+                            @Html.PagedListPager(Model, pageNum => Url.Action("Index_VuotCong", new { pageNum }))
 
                         </div>
                     </div>

@@ -36,14 +36,7 @@ namespace NKSLK.Models.DAO
             var lst = db.Database.SqlQuery<CongNhan_Cong>(q).ToPagedList(pageNum, pageSize);
             return lst;
         }
-        public IEnumerable<CongNhan_Cong> Cong_Month1(string month)
-        {
-            string nam = month.Substring(0, 4);
-            string thang = month.Substring(5, 2);
-            string q = "EXEC dbo.Cong_TatCaCN '" + thang + "','" + nam + "'";
-            var lst = db.Database.SqlQuery<CongNhan_Cong>(q).ToList();
-            return lst;
-        }
+
         public IEnumerable<CTCong> ChiTietCong(int pageNum, int pageSize, int MaCN,string month)
         {
             string nam = month.Substring(0, 4);
@@ -51,6 +44,42 @@ namespace NKSLK.Models.DAO
             string q = "exec ChiTietCong '" + MaCN + "','" + thang + "','" + nam + "'";
             var lst = db.Database.SqlQuery<CTCong>(q).ToPagedList(pageNum, pageSize);
             return lst;
+        }
+
+        public IEnumerable<CTCong> ChiTietCong1(int pageNum, int pageSize, int MaCN, string day)
+        {
+            string q = "exec ChiTietCong1 '" + MaCN + "','" + day + "'";
+            var lst = db.Database.SqlQuery<CTCong>(q).ToPagedList(pageNum, pageSize);
+            return lst;
+        }
+        
+
+        public int ThoiGianCongChuan(string day)
+        {
+            string q = "SELECT dbo.ThoiGianCongChuan('" + day + "')";
+            var t = db.Database.SqlQuery<int>(q).FirstOrDefault();
+            return t;
+        }
+
+        public IEnumerable<CongNhan_Cong> VuotCongChuan(int pageNum, int pageSize, string day)
+        {
+            string q = "EXEC dbo.VuotThoiGianCongChuan '" + day + "'";
+            var lst = db.Database.SqlQuery<CongNhan_Cong>(q).ToPagedList(pageNum, pageSize);
+            return lst;
+        }
+
+        public DateTime NgayDauTuan(string day)
+        {
+            string q = "SELECT dbo.Week_FirstDay('" + day + "')";
+            var t = db.Database.SqlQuery<DateTime>(q).FirstOrDefault();
+            return t;
+        }
+
+        public DateTime NgayCuoiTuan(string day)
+        {
+            string q = "SELECT dbo.Week_LastDay('" + day + "')";
+            var t = db.Database.SqlQuery<DateTime>(q).FirstOrDefault();
+            return t;
         }
     }
 }
